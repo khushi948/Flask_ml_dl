@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Academic Success Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #325a83, #00ddff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        } 
+
+        .header {
+            background: rgba(7, 0, 0, 0.9);
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: absolute;
+            justify-content: center;
+            left: 2px;
+        }
+        
+        .home-btn:hover {
+            background: #aaaaaa40;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            height: 80vh;
+            overflow-y: auto;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        input[type="number"] {
+            appearance: textfield;
+        }
+        
+        button {
+            background: #ff7eb3;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #ff4f7b;
+            transform: scale(1.05);
+        }
+        
+        .try-now {
+            background: #4CAF50;
+        }
+        
+        .try-now:hover {
+            background: #45a049;
+        }
+        
+        .result-box {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="home-btn" onclick="window.location.href='http://127.0.0.1:5000/'">🏠 Home</button>
+        Student Academic Success Prediction
+    </div>
+
+    <div class="container">
+        <h1>Predict Student Academic Success</h1>
+        
+        <img src="{{url_for('static',filename='images/student.jpg')}}" width="200" height="100" alt="Student Image">
+
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="model">Select Model:</label>
+                <select id="model" name="model">
+                    <option value="rf_kros">Random Forest</option>
+                    <option value="dt_kros">Decision Tree</option>
+                    <option value="lr_k">Logistic Regression</option>
+                    <option value="svm_k">Support Vector Machine</option>
+                    <option value="knn_k">K-Nearest Neighbors</option>
+                </select>
+            </div>
+            
+            <button type="button" class="try-now" onclick="fillSampleData()">Try Now</button>
+            <br>
+            <br>
+            
+            <div id="inputFields"></div>
+            
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result-box">
+            <p id="predictionResult">Waiting for prediction...</p>
+        </div>
+    </div>
+
+    <script>
+        const featureNames = [
+            "Application mode", "Course", "Previous qualification", "Mother's qualification", "Mother's occupation",
+            "Father's occupation", "Age at enrollment", "Curricular units 1st sem (approved)", "Curricular units 1st sem (grade)",
+            "Curricular units 2nd sem (evaluations)", "Curricular units 2nd sem (approved)", "Curricular units 2nd sem (grade)"
+        ];
+        
+        const placeholders = {
+            "Age at enrollment": "Enter age (e.g., 19)",
+            "Curricular units 1st sem (approved)": "Eg., 5",
+            "Curricular units 1st sem (grade)": "Eg., 12",
+            "Curricular units 2nd sem (evaluations)": "Eg., 3",
+            "Curricular units 2nd sem (approved)": "Eg., 7",
+            "Curricular units 2nd sem (grade)": "Eg., 15",
+        };
+        
+        const categoricalFields = {
+            "Application mode": {
+                1: "1st phase - general contingent",
+                2: "Ordinance No. 612/93",
+                5: "1st phase - special contingent (Azores Island)",
+                7: "Holders of other higher courses",
+                10: "Ordinance No. 854-B/99",
+                15: "International student (bachelor)",
+                16: "1st phase - special contingent (Madeira Island)",
+                17: "2nd phase - general contingent",
+                18: "3rd phase - general contingent",
+                26: "Ordinance No. 533-A/99, item b2) (Different Plan)",
+                27: "Ordinance No. 533-A/99, item b3 (Other Institution)",
+                39: "Over 23 years old",
+                42: "Transfer",
+                43: "Change of course",
+                44: "Technological specialization diploma holders",
+                51: "Change of institution/course",
+                53: "Short cycle diploma holders",
+                57: "Change of institution/course (International)"
+            },
+            "Course": {
+                33: "Biofuel Production Technologies", 
+                171: "Animation and Multimedia Design", 
+                8014: "Social Service (evening attendance) ", 
+                9003: "Agronomy", 
+                9070: "Communication Design ", 
+                9085: "Veterinary Nursing", 
+                9119: "Informatics Engineering", 
+                9130: "Equinculture", 
+                9147: "Management", 
+                9238: "Social Service", 
+                9254: "Tourism", 
+                9500: "Nursing", 
+                9556: "Oral Hygiene", 
+                9670: "Advertising and Marketing Management", 
+                9773: "Journalism and Communication", 
+                9853: "Basic Education", 
+                9991: "Management (evening attendance)"
+            },
+            "Previous qualification": {
+                1: "Secondary education",
+                2: "Higher education - bachelor's degree",
+                3: "Higher education - degree",
+                4: "Higher education - master's",
+                5: "Higher education - doctorate",
+                6: "Frequency of higher education",
+                9: "12th year of schooling - not completed",
+                10: "11th year of schooling - not completed",
+                12: "Other - 11th year of schooling",
+                14: "10th year of schooling",
+                15: "10th year of schooling - not completed",
+                19: "Basic education 3rd cycle (9th/10th/11th year) or equiv.",
+                38: "Basic education 2nd cycle (6th/7th/8th year) or equiv.",
+                39: "Technological specialization course",
+                40: "Higher education - degree (1st cycle)",
+                42: "Professional higher technical course",
+                43: "Higher education - master (2nd cycle)"
+            },
+            "Mother's qualification": {
+                1: "Secondary Education - 12th Year of Schooling or Eq.",
+                2: "Higher Education - Bachelor's Degree",
+                3: "Higher Education - Degree",
+                4: "Higher Education - Master's",
+                5: "Higher Education - Doctorate",
+                6: "Frequency of Higher Education",
+                9: "12th Year of Schooling - Not Completed",
+                10: "11th Year of Schooling - Not Completed",
+                11: "7th Year (Old)",
+                12: "Other - 11th Year of Schooling",
+                14: "10th Year of Schooling",
+                18: "General commerce course",
+                19: "Basic Education 3rd Cycle (9th/10th/11th Year) or Equiv.",
+                22: "Technical-professional course",
+                26: "7th Year of Schooling",
+                27: "2nd Cycle of the General High School Course",
+                29: "9th Year of Schooling - Not Completed",
+                30: "8th Year of Schooling",
+                34: "Unknown",
+                35: "Can't Read or Write",
+                36: "Can Read Without Having a 4th Year of Schooling",
+                37: "Basic Education 1st Cycle (4th/5th Year) or Equiv.",
+                38: "Basic Education 2nd Cycle (6th/7th/8th Year) or Equiv.",
+                39: "Technological Specialization Course",
+                40: "Higher Education - Degree (1st Cycle)",
+                41: "Specialized Higher Studies Course",
+                42: "Professional Higher Technical Course",
+                43: "Higher Education - Master (2nd Cycle)",
+                44: "Higher Education - Doctorate (3rd Cycle)"
+            },
+            "Mother's occupation": {
+                0: "Student",
+                1: "Representatives of the Legislative Power and Executive Bodies, Directors, Directors and Executive Managers",
+                2: "Specialists in Intellectual and Scientific Activities",
+                3: "Intermediate Level Technicians and Professions",
+                4: "Administrative Staff",
+                5: "Personal Services, Security and Safety Workers and Sellers",
+                6: "Farmers and Skilled Workers in Agriculture, Fisheries and Forestry",
+                7: "Skilled Workers in Industry, Construction and Craftsmen",
+                8: "Installation and Machine Operators and Assembly Workers",
+                9: "Unskilled Workers",
+                10: "Armed Forces Professions",
+                90: "Other Situation",
+                99: "(Blank)",
+                122: "Health Professionals",
+                123: "Teachers",
+                125: "Specialists in Information and Communication Technologies (ICT)",
+                131: "Intermediate Level Science and Engineering Technicians and Professions",
+                132: "Technicians and Professionals, of Intermediate Level of Health",
+                134: "Intermediate Level Technicians from Legal, Social, Sports, Cultural and Similar Services",
+                141: "Office Workers, Secretaries in General and Data Processing Operators",
+                143: "Data, Accounting, Statistical, Financial Services and Registry-Related Operators",
+                144: "Other Administrative Support Staff",
+                151: "Personal Service Workers",
+                152: "Sellers",
+                153: "Personal Care Workers and the Like",
+                171: "Skilled Construction Workers and the Like, Except Electricians",
+                173: "Skilled Workers in Printing, Precision Instrument Manufacturing, Jewelers, Artisans and the Like",
+                175: "Workers in Food Processing, Woodworking, Clothing and Other Industries and Crafts",
+                191: "Cleaning Workers",
+                192: "Unskilled Workers in Agriculture, Animal Production, Fisheries and Forestry",
+                193: "Unskilled Workers in Extractive Industry, Construction, Manufacturing and Transport",
+                194: "Meal Preparation Assistants"
+            },
+            "Father's occupation": {
+                0: "Student",
+                1: "Representatives of the Legislative Power and Executive Bodies, Directors, Directors and Executive Managers",
+                2: "Specialists in Intellectual and Scientific Activities",
+                3: "Intermediate Level Technicians and Professions",
+                4: "Administrative Staff",
+                5: "Personal Services, Security and Safety Workers and Sellers",
+                6: "Farmers and Skilled Workers in Agriculture, Fisheries and Forestry",
+                7: "Skilled Workers in Industry, Construction and Craftsmen",
+                8: "Installation and Machine Operators and Assembly Workers",
+                9: "Unskilled Workers",
+                10: "Armed Forces Professions",
+                90: "Other Situation",
+                99: "(Blank)",
+                101: "Armed Forces Officers",
+                102: "Armed Forces Sergeants",
+                103: "Other Armed Forces Personnel",
+                112: "Directors of Administrative and Commercial Services",
+                114: "Hotel, Catering, Trade and Other Services Directors",
+                121: "Specialists in the Physical Sciences, Mathematics, Engineering and Related Techniques",
+                122: "Health Professionals",
+                123: "Teachers",
+                124: "Specialists in Finance, Accounting, Administrative Organization, Public and Commercial Relations",
+                131: "Intermediate Level Science and Engineering Technicians and Professions",
+                132: "Technicians and Professionals, of Intermediate Level of Health",
+                134: "Intermediate Level Technicians from Legal, Social, Sports, Cultural and Similar Services",
+                135: "Information and Communication Technology Technicians",
+                141: "Office Workers, Secretaries in General and Data Processing Operators",
+                143: "Data, Accounting, Statistical, Financial Services and Registry-Related Operators",
+                144: "Other Administrative Support Staff",
+                151: "Personal Service Workers",
+                152: "Sellers",
+                153: "Personal Care Workers and the Like",
+                154: "Protection and Security Services Personnel",
+                161: "Market-Oriented Farmers and Skilled Agricultural and Animal Production Workers",
+                163: "Farmers, Livestock Keepers, Fishermen, Hunters and Gatherers, Subsistence",
+                171: "Skilled Construction Workers and the Like, Except Electricians",
+                172: "Skilled Workers in Metallurgy, Metalworking and Similar",
+                174: "Skilled Workers in Electricity and Electronics",
+                175: "Workers in Food Processing, Woodworking, Clothing and Other Industries and Crafts",
+                181: "Fixed Plant and Machine Operators",
+                182: "Assembly Workers",
+                183: "Vehicle Drivers and Mobile Equipment Operators",
+                192: "Unskilled Workers in Agriculture, Animal Production, Fisheries and Forestry",
+                193: "Unskilled Workers in Extractive Industry, Construction, Manufacturing and Transport",
+                194: "Meal Preparation Assistants",
+                195: "Street Vendors (Except Food) and Street Service Providers"
+            }
+        };
+
+        function updateInputFields() {
+            const inputContainer = document.getElementById('inputFields');
+            inputContainer.innerHTML = ''; // Clear previous inputs
+
+            featureNames.forEach(feature => {
+                const div = document.createElement('div');
+                div.classList.add('form-group');
+                
+                const label = document.createElement('label');
+                label.textContent = `${feature}: `;
+                div.appendChild(label);
+
+                if (categoricalFields[feature]) {
+                    // Create dropdown for categorical features
+                    const select = document.createElement('select');
+                    select.name = feature;
+                    select.classList.add('feature-input');
+
+                    for (const [value, text] of Object.entries(categoricalFields[feature])) {
+                        const option = document.createElement('option');
+                        option.value = value;
+                        option.textContent = text;
+                        select.appendChild(option);
+                    }
+                    div.appendChild(select);
+                } else {
+                    // Create input field for numerical features
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.name = feature;
+                    input.classList.add('feature-input');
+                    input.required = true;
+                    input.step = 'any'; // Allow float values
+                    input.placeholder = placeholders[feature] || `Enter ${feature.toLowerCase()}`;
+                    div.appendChild(input);
+                }
+
+                inputContainer.appendChild(div);
+            });
+        }
+        
+        function fillSampleData() {
+            // Sample values for each field
+            const sampleData = {
+                "Application mode": "1",
+                "Course": "9119", // Informatics Engineering
+                "Previous qualification": "1", // Secondary education
+                "Mother's qualification": "3", // Higher Education - Degree
+                "Mother's occupation": "2", // Specialists in Intellectual and Scientific Activities
+                "Father's occupation": "2", // Specialists in Intellectual and Scientific Activities
+                "Age at enrollment": 19,
+                "Curricular units 1st sem (approved)": 6,
+                "Curricular units 1st sem (grade)": 14,
+                "Curricular units 2nd sem (evaluations)": 6,
+                "Curricular units 2nd sem (approved)": 6,
+                "Curricular units 2nd sem (grade)": 15
+            };
+
+            // Fill the form with sample data
+            const inputs = document.querySelectorAll('.feature-input');
+            inputs.forEach(input => {
+                const name = input.name;
+                if (input.tagName === 'SELECT') {
+                    input.value = sampleData[name];
+                } else {
+                    input.value = sampleData[name];
+                }
+            });
+        }
+
+        document.getElementById('predictionForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const model = document.getElementById('model').value;
+            const inputs = document.querySelectorAll('.feature-input');
+
+            const featuresInput = Array.from(inputs).map(input => {
+                return input.tagName === 'SELECT' ? parseInt(input.value) : parseFloat(input.value);
+            });
+
+            console.log("Sending data:", { model, features: featuresInput });
+
+            document.getElementById('predictionResult').innerText = "Loading...";
+
+            try {
+                const response = await fetch('/api_bp_classify/predict_classify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ model, features: featuresInput })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Add emoji and color based on prediction
+                    let emoji = "🎓";
+                    let color = "#4CAF50";
+                    let predictionText = result.prediction;
+                    
+                    if (predictionText.toLowerCase().includes("dropout")) {
+                        emoji = "⚠️";
+                        color = "#f44336";
+                    } else if (predictionText.toLowerCase().includes("enrolled")) {
+                        emoji = "📚";
+                        color = "#2196F3";
+                    }
+                    
+                    document.getElementById('predictionResult').innerHTML = 
+                        `${emoji} Prediction: Student is ${result.prediction}</span>`;
+                } else {
+                    document.getElementById('predictionResult').innerText = `Error: ${result.error}`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('predictionResult').innerText = "Error: Unable to process request.";
+            }
+        });
+
+        window.onload = function() {
+            updateInputFields();
+        };
+    </script>
+</body>
+</html>

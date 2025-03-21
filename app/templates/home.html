@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Models Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #325a83, #00ddff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+        .header {
+            background: rgba(7, 0, 0, 0.7);
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+        }
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: absolute;
+            left: 20px; /* Align to the left */
+        }
+        .home-btn:hover {
+            background: #ff7eb3;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .option {
+            background: rgba(81, 92, 196, 0.673);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .option:hover {
+            background: #ff7eb3;
+            transform: scale(1.05);
+            border-color: #fff;
+        }
+        .icon {
+            font-size: 30px;
+        }
+        .option-text {
+            flex: 1;
+        }
+        .option-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .option-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <button class="home-btn" onclick="window.location.href='http://127.0.0.1:5000/'">🏠 Home</button>
+                           Machine Learning Models 
+        
+    </div>
+    <div class="container">
+        <h1>What would you like to predict?</h1>
+        <div class="options">
+            <a href="http://127.0.0.1:5000/api_bp/regression">
+                <div class="option">
+                    <div class="icon">🏡</div>
+                    <div class="option-text">
+                        <div class="option-title">House Price Prediction</div>
+                        <div class="option-desc">Estimate property prices using Regression Models.</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://127.0.0.1:5000/api_bp_classify/classification">
+                <div class="option">
+                    <div class="icon">🎓</div>
+                    <div class="option-text">
+                        <div class="option-title">Student Academic Success</div>
+                        <div class="option-desc">Classify students' success probability using Classification Models.</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://127.0.0.1:5000/api_bp_cluster/cluster">
+                <div class="option">
+                    <div class="icon">💰</div>
+                    <div class="option-text">
+                        <div class="option-title">Income vs Spending Analysis</div>
+                        <div class="option-desc">Segment users based on financial patterns using Clustering Models.</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://127.0.0.1:5000/api_bp_association/association">
+                <div class="option">
+                    <div class="icon">🛒</div>
+                    <div class="option-text">
+                        <div class="option-title">Grocery Purchase Recommendations</div>
+                        <div class="option-desc">Suggest frequently bought items using Association Rule Learning.</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://127.0.0.1:5000/api_bp_fruit/fruit">
+                <div class="option">
+                    <div class="icon">🍎🍌</div>
+                    <div class="option-text">
+                        <div class="option-title">Fruit Classification</div>
+                        <div class="option-desc">Upload image to classify into Apple or Banana</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://127.0.0.1:5000/api_bp_ai_real/ai_real">
+                <div class="option">
+                    <div class="icon">🖼️</div>
+                    <div class="option-text">
+                        <div class="option-title">AI vs Real Image Classification</div>
+                        <div class="option-desc">Upload image to classify into real or fake Image</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+*.joblib !text !filter !merge !diff
+*.pkl !text !filter !merge !diff
+*.h5 !text !filter !merge !diff
+*.pyd !text !filter !merge !diff
+*.keras !text !filter !merge !diff
