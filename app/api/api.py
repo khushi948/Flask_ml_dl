@@ -32,7 +32,7 @@ scaler_all = joblib.load('app/models/regression/preprocessing/scaler_all.joblib'
 svm_scaler = joblib.load('app/models/regression/preprocessing/svm_scaler.joblib')
 scaler_k_best = joblib.load('app/models/regression/preprocessing/scaler_k_best.joblib')
 
-scaler_xgb=joblib.load('app/models/classification/preprocessing/scaler_xgb.joblib')
+# scaler_xgb=joblib.load('app/models/classification/preprocessing/scaler_xgb.joblib')
 scaler_k=joblib.load('app/models/classification/preprocessing/scaler_k.joblib')
 
 models_c={
@@ -43,7 +43,7 @@ models_c={
     'lr': joblib.load('app/models/classification/lr.joblib'),
     'svm_1': joblib.load('app/models/classification/svm_1.joblib'),
     'knn_1': joblib.load('app/models/classification/knn_1.joblib'),
-    'xgb': joblib.load('app/models/classification/xgb.joblib'),
+    # 'xgb': joblib.load('app/models/classification/xgb.joblib'),
     'lr_k': joblib.load('app/models/classification/lr_k.joblib'),
     'svm_k': joblib.load('app/models/classification/svm_k.joblib'),
     'knn_k': joblib.load('app/models/classification/knn_k.joblib')
@@ -167,13 +167,12 @@ def predict_classification():
         
             
 
-        if model_name == 'xgb': 
-            input_scaled = scaler_xgb.transform(features.reshape(1, -1))
-            prediction = models_c[model_name].predict(input_scaled)
+        # if model_name == 'xgb': 
+        #     input_scaled = scaler_xgb.transform(features.reshape(1, -1))
+        #     prediction = models_c[model_name].predict(input_scaled)
 
-        else:
-            input_scaled = scaler_k.transform(input_array1)
-            prediction = models_c[model_name].predict(input_scaled)
+        input_scaled = scaler_k.transform(input_array1)
+        prediction = models_c[model_name].predict(input_scaled)
             
         
 
