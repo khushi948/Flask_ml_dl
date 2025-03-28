@@ -30,7 +30,6 @@
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
-            text-transform: uppercase;
             position: absolute;
             top: 0;
             display: flex;
@@ -42,15 +41,16 @@
         .home-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            padding: 10px 15px;
+            padding: 10px;
             font-size: 16px;
             color: white;
             cursor: pointer;
             border-radius: 5px;
             transition: 0.3s;
-            position: absolute;
-            justify-content: center;
-            left: 2px; /* Keep button on the left */
+            width: 6%;
+            position: fixed;
+            left: 10px;
+            top: 1px;            
         }
         
         .home-btn:hover {
@@ -66,7 +66,7 @@
             text-align: center;
             height: 80vh;  /* Set max height */
             overflow-y: auto;  /* Enable scrolling */
-            width: 800px;
+            width: 500px;
         }
         
         ::-webkit-scrollbar {
@@ -131,13 +131,24 @@
             background: #45a049;
         }
         .result-box {
-            margin-top: 15px;
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            display: none; 
+            width: auto;
+            max-width: 80%; 
+            background: rgba(0, 0, 0, 0.8); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 5px;
+            text-align: center;
+            z-index: 1000; 
         }
+        
+        
     </style>
 </head>
 <body>
@@ -156,12 +167,13 @@
                 <label for="model">Select Model:</label>
     
                 <select id="model" name="model" onchange="updateInputFields()">
-                    <option value="linear_model">Linear Regression</option>
-                    <option value="multiple_model">Multiple Regression</option>
-                    <option value="regressor">Decision Tree</option>
-                    <option value="rf_model">Random Forest</option>
-                    <option value="svr_model">SVM</option>
-                    <option value="poly_model">Polynomial Regression</option>
+                    <option value="" disabled selected>Select a model</option>
+                    <option value="linear_model">Linear Regression (Accuracy-70%)</option>
+                    <option value="multiple_model">Multiple Regression (Accuracy-65%)</option>
+                    <option value="regressor">Decision Tree (Accuracy-67%)</option>
+                    <option value="rf_model">Random Forest (Accuracy-85%)</option>
+                    <option value="svr_model">SVM (Accuracy-81%)</option>
+                    <option value="poly_model">Polynomial Regression (Accuracy-71%)</option>
                 </select>
             </div>
             <button type="button" class="try-now" onclick="fillSampleData()">Try Now</button>
@@ -177,97 +189,106 @@
         </div>
     </div>
 
-    <script>
-        const featureNames = [
-    "Criminal Rate ratio", "Proportion of residential land", "Proportion of non-retail business",
-    "Charles River nearby(0/1)", "Nitric oxides concentration(ppm)", "Average number of rooms",
-    "Proportion of owner-occupied units", "Distances to Boston employment centres", "Accessibility to radial highways",
-    "Full-value property-tax rate per $10,000", "Pupil-teacher ratio by town", "Percent lower status of the population"
-];
-
-const placeholders = {
-    "Criminal Rate ratio": "Eg., 0.13",
-    "Proportion of residential land": "Eg., 15",
-    "Proportion of non-retail business": "Eg., 7",
-    "Charles River nearby(0/1)": "0 for No, 1 for Yes",
-    "Nitric oxides concentration(ppm)": "Eg., 0.5",
-    "Average number of rooms": "Eg., 5",
-    "Proportion of owner-occupied units": "Eg., 80",
-    "Distances to Boston employment centres": "Eg., 4.5",
-    "Accessibility to radial highways": "Eg., 5",
-    "Full-value property-tax rate per $10,000": "Eg., 300",
-    "Pupil-teacher ratio by town": "Eg., 15",
-    "Percent lower status of the population": "Eg., 12"
-};
-
-// Function to update input fields dynamically based on selected model
-function updateInputFields() {
-    const model = document.getElementById('model').value;
-    const inputContainer = document.getElementById('inputFields');
-    inputContainer.innerHTML = ''; 
-
-    let selectedIndexes = (model === 'multiple_model' || model === 'svr_model' || model === 'poly_model') 
-                          ? [0, 2, 4, 5, 8, 9, 10, 11] 
-                          : Array.from(Array(12).keys());
-
-    selectedIndexes.forEach(i => {
-        const div = document.createElement('div');
-        div.classList.add('form-group');
-
-        const label = document.createElement('label');
-        label.textContent = `${featureNames[i]}: `;
-
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.name = featureNames[i];
-        input.placeholder = placeholders[featureNames[i]];
-        input.required = true;
-        input.step = "any";  
-
-        div.appendChild(label);
-        div.appendChild(input);
-        inputContainer.appendChild(div);
-    });
-}
-
-function fillSampleData() {
-    const sampleValues = [9, 14, 5, 0, 0.5, 6, 80, 3.4, 3, 234, 18, 12];
-    const inputs = document.querySelectorAll('.form-group input');
+    <script>const featureNames = [
+        "Criminal Rate ratio", "Proportion of residential land", "Proportion of non-retail business",
+        "Charles River nearby(0/1)", "Nitric oxides concentration(ppm)", "Average number of rooms",
+        "Proportion of owner-occupied units", "Distances to Boston employment centres", "Accessibility to radial highways",
+        "Full-value property-tax rate per $10,000", "Pupil-teacher ratio by town", "Percent lower status of the population"
+    ];
     
-    inputs.forEach((input, index) => {
-        input.value = sampleValues[index] ?? ""; 
-    });
-}
-
-document.getElementById('predictionForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
+    const placeholders = {
+        "Criminal Rate ratio": "Eg., 0.13",
+        "Proportion of residential land": "Eg., 15",
+        "Proportion of non-retail business": "Eg., 7",
+        "Charles River nearby(0/1)": "0 for No, 1 for Yes",
+        "Nitric oxides concentration(ppm)": "Eg., 0.5",
+        "Average number of rooms": "Eg., 5",
+        "Proportion of owner-occupied units": "Eg., 80",
+        "Distances to Boston employment centres": "Eg., 4.5",
+        "Accessibility to radial highways": "Eg., 5",
+        "Full-value property-tax rate per $10,000": "Eg., 300",
+        "Pupil-teacher ratio by town": "Eg., 15",
+        "Percent lower status of the population": "Eg., 12"
+    };
     
-    const model = document.getElementById('model').value;
-    const inputs = document.querySelectorAll('.form-group input');
-    const featuresInput = Array.from(inputs).map(input => parseFloat(input.value));
-
-    console.log("Sending data:", { model, features: featuresInput }); // Debugging
-
-    try {
-        const response = await fetch('/api_bp/predict_regression', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model, features: featuresInput })
+    // Function to update input fields dynamically based on selected model
+    function updateInputFields() {
+        const model = document.getElementById('model').value;
+        const inputContainer = document.getElementById('inputFields');
+        inputContainer.innerHTML = ''; 
+    
+        let selectedIndexes = (model === 'multiple_model' || model === 'svr_model' || model === 'poly_model') 
+                              ? [0, 2, 4, 5, 8, 9, 10, 11] 
+                              : Array.from(Array(12).keys());
+    
+        selectedIndexes.forEach(i => {
+            const div = document.createElement('div');
+            div.classList.add('form-group');
+    
+            const label = document.createElement('label');
+            label.textContent = `${featureNames[i]}: `;
+    
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.name = featureNames[i];
+            input.placeholder = placeholders[featureNames[i]];
+            input.required = true;
+            input.step = "any";  
+    
+            div.appendChild(label);
+            div.appendChild(input);
+            inputContainer.appendChild(div);
         });
-
-        const result = await response.json();
-        document.getElementById('predictionResult').innerText = 
-            `House Price: $${(result.prediction * 1000).toFixed(2)}`;
-    } catch (error) {
-        console.error("Error fetching prediction:", error);
-        document.getElementById('predictionResult').innerText = "Error getting prediction!";
     }
-});
-
-// Ensure the fields update on page load
-window.onload = updateInputFields;
-
-    </script>
+    
+    // Function to auto-fill sample data
+    function fillSampleData() {
+        const sampleValues = [9, 14, 5, 0, 0.5, 6, 80, 3.4, 3, 234, 18, 12];
+        const inputs = document.querySelectorAll('.form-group input');
+        
+        inputs.forEach((input, index) => {
+            input.value = sampleValues[index] ?? ""; 
+        });
+    }
+    
+    // Handle form submission
+    document.getElementById('predictionForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const model = document.getElementById('model').value;
+        if (!model) {
+            alert("Please select a model first!");
+            return;
+        }
+    
+        const inputs = document.querySelectorAll('.form-group input');
+        const featuresInput = Array.from(inputs).map(input => parseFloat(input.value));
+    
+        const resultBox = document.querySelector('.result-box');
+        const resultText = document.getElementById('predictionResult');
+    
+        
+        resultBox.style.display = "block";
+        resultText.innerText = "Waiting for prediction...";
+    
+        try {
+            const response = await fetch('/api_bp/predict_regression', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model, features: featuresInput })
+            });
+    
+            const result = await response.json();
+            resultText.innerText = `House Price: $${(result.prediction * 1000).toFixed(2)}`;
+        } catch (error) {
+            console.error("Error fetching prediction:", error);
+            resultText.innerText = "Error getting prediction!";
+        }
+    });
+    
+    // Ensure the fields update on page load
+    window.onload = updateInputFields;
+        </script>
 
 </body>
 </html>

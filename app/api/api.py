@@ -1,10 +1,16 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify,current_app
 import joblib
 import numpy as np
 from sklearn.metrics import pairwise_distances_argmin_min
 from sklearn.preprocessing import  PolynomialFeatures
 
+import os
 
+
+UPLOAD_FOLDER_AI = "app/uploads/ai"
+UPLOAD_FOLDER_FRUIT = "app/uploads/fruit"
+os.makedirs(UPLOAD_FOLDER_AI, exist_ok=True) 
+os.makedirs(UPLOAD_FOLDER_FRUIT, exist_ok=True) 
 
 api_bp = Blueprint('api_bp', __name__)
 api_bp_classify = Blueprint('api_bp_classify', __name__)
@@ -63,38 +69,44 @@ model_cluster={
 std_scaler=joblib.load('app/models/clustering/preprocessing/std_scaler.joblib')
 
 
-
 @home_api.route('/')
 def home():
+    current_app.logger.info("Home page accessed")  
     return render_template('home.html')
 
 @api_bp.route('/regression')
 def regression_home():
+    current_app.logger.info("Regression")  
     return render_template('regression.html')
 
 
 @api_bp_classify.route('/classification')
 def classification_home():
+    current_app.logger.info("Classification")  
     return render_template('classification.html')
 
 
 @api_bp_cluster.route('/cluster')
 def cluster_home():
+    current_app.logger.info("Cluster")  
     return render_template('cluster.html')
 
 
 
 @api_bp_association.route('/association')
 def association_home():
+    current_app.logger.info("Association")  
     return render_template('association.html')
 
 
 
 @api_bp_fruit.route('/fruit')
 def fruit_home():
+    current_app.logger.info("Fruit classification")  
     return render_template('fruit.html')
 @api_bp_ai_real.route('/ai_real')
 def ai_real_home():
+    current_app.logger.info("Real vs fake image ")  
     return render_template('ai_real.html')
 
 
@@ -107,41 +119,37 @@ def predict_regression():
         features = np.array(data['features']).reshape(1, -1)  
         
         if model_name=='linear_model':
+            current_app.logger.info("Linear model selected")  
             features_scaled = scaler_all.transform(features)
             prediction = models[model_name].predict(features_scaled)
         elif model_name=='multiple_model':
+            current_app.logger.info("Multiple model selected")  
             X_k_best = scaler_k_best.transform(features)
             X_train_scaled_k_best = scaler_k_best.fit_transform(X_k_best)
             prediction = models[model_name].predict(X_train_scaled_k_best)
         elif model_name=='regressor':
+            current_app.logger.info("Decision tree")  
             prediction = models[model_name].predict(features)
         elif model_name=='rf_model':
+            current_app.logger.info("Random forest")  
             prediction = models[model_name].predict(features)
         elif model_name=='svr_model':
+            current_app.logger.info("SVM model selected")  
             X_k_best = scaler_k_best.transform(features)
             X_train_scaled_k_best = svm_scaler.fit_transform(X_k_best)
             prediction =models[model_name].predict(X_train_scaled_k_best)
         elif model_name == 'poly_model':
-    
+            current_app.logger.info("Polynomial model selected")  
             X_k_best = scaler_k_best.transform(features)  
-            # X_poly_k_best = poly_scaler.fit_transform(X_k_best)  
-            # X_poly_k_best_scaled = poly_scaler.fit_transform(X_poly_k_best)
-            # prediction = models[model_name].predict(X_poly_k_best_scaled) 
-            # X_k_best = scaler_k_best.transform(features)
-            # X_train_scaled_k_best = svm_scaler.fit_transform(X_k_best)
-            # prediction =models[model_name].predict(X_train_scaled_k_best)
-
             poly = PolynomialFeatures(degree=2) 
             X_train_poly = poly.fit_transform(X_k_best)
-
-            # X_train_poly_scaled = poly_scaler.fit_transform(X_train_poly)
 
            
             prediction = models[model_name].predict(X_train_poly)
 
         
 
-        
+        current_app.logger.info("Regression prediction sent")  
         return jsonify({'prediction': prediction.tolist()})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -159,33 +167,32 @@ def predict_classification():
 
         indices = [1,3, 5, 8, 10, 11, 19, 24, 25, 29, 30, 31]  
 
-        
-    
         input_array1 = np.array(features).reshape(1, -1)  
-        
-        
-        
-            
-
         # if model_name == 'xgb': 
         #     input_scaled = scaler_xgb.transform(features.reshape(1, -1))
         #     prediction = models_c[model_name].predict(input_scaled)
 
         input_scaled = scaler_k.transform(input_array1)
         prediction = models_c[model_name].predict(input_scaled)
-            
-        
-
-        
+    
         class_mapping = {0: "Dropout", 1: "Enrolled", 2: "Graduate"}
         predicted_class = class_mapping.get(prediction[0], "Unknown")
-        print("predicted", predicted_class)
+        if hasattr(models_c[model_name], "predict_proba"):
+            probabilities = models_c[model_name].predict_proba(input_scaled)[0]
+            prob_dict = {class_mapping[i]: float(probabilities[i]) for i in range(len(probabilities))}
+        else:
+            prob_dict = None  # Some models (e.g., SVM without probability=True) may not support this
 
-        return jsonify({'prediction': predicted_class})
+        print("Predicted:", predicted_class)
+        print("Probabilities:", prob_dict)
+
+        return jsonify({
+            'prediction': predicted_class,
+            'probabilities': prob_dict
+        })
     
     except Exception as e:
         return jsonify({'error': str(e)}), 400
-    
 
 
 @api_bp_cluster.route('/predict_cluster', methods=['POST'])
@@ -202,9 +209,6 @@ def predict_cluster():
         x_input, y_input = user_input_pca[0]
 
         if model_name=='kmeans_pca':
-
-            
-            
             prediction = model_cluster['kmeans_pca'].predict(user_input_pca)[0]
             prediction = prediction.item()
         elif model_name=='agg_clustering':
@@ -241,7 +245,6 @@ import pandas as pd
 apriori= joblib.load('app/models/association/apriori_model.joblib')
 fpgrowth= joblib.load('app/models/association/frequent_itemsets_fpgrowth.joblib')
 te = joblib.load('app/models/association/transaction_encoder.joblib')
-import os
 model_dir='app/models/association'
 
 @api_bp_association.route('/predict_association', methods=['POST'])
@@ -343,55 +346,52 @@ import subprocess
 
 from werkzeug.utils import secure_filename
 import subprocess
-import os
-import tempfile
 import re
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
+import json
 @api_bp_fruit.route('/predict_fruit', methods=['POST'])
 def predict_fruit():
     try:
-            
         if 'file' not in request.files:
             return jsonify({"error": "No file uploaded"}), 400
-        
+
         file = request.files['file']
         if file.filename == '':
             return jsonify({"error": "No file selected"}), 400
-        
-        # Secure filename
-        filename = secure_filename(file.filename)
 
-        # Save to a temporary file
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
-            file.save(temp_file.name)
-            temp_filepath = temp_file.name
+        # Save the uploaded image
+        filename = secure_filename(file.filename)
+        image_path = os.path.join(UPLOAD_FOLDER_FRUIT, filename)
+        file.save(image_path)
 
         # Choose model (default: model1)
-        model_name = request.form.get("model", "model1")  
+        model_name = request.form.get("model", "model1")
 
         # Call Python script using subprocess
         result = subprocess.run(
-            ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_fruit.py",temp_filepath, model_name],
+            ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_fruit.py",image_path, model_name],
             capture_output=True,
             text=True
         )
 
-        # Remove temp file after processing
-        os.remove(temp_filepath)
-
         if result.returncode != 0:
             return jsonify({"error": "Prediction failed", "details": result.stderr}), 500
 
-        match = re.search(r'\b(Apple|Banana)\b', result.stdout, re.IGNORECASE)
-        prediction = match.group(0) if match else "Unknown"
+        # Convert stdout to JSON
+        output_json = json.loads(result.stdout)
 
-        
+        if "error" in output_json:
+            return jsonify(output_json), 500
 
-        return jsonify({"prediction": prediction})
+        return jsonify({
+            "prediction": output_json["prediction"],
+            "probabilities": output_json["probabilities"]
+        })
 
     except Exception as e:
-        return jsonify({"error": "Prediction failed", "details": str(e)})
+        return jsonify({"error": "Prediction failed", "details": str(e)}), 500
+
 
 @api_bp_ai_real.route('/predict_ai_real', methods=['POST'])
 def predict_ai_real():
@@ -405,25 +405,21 @@ def predict_ai_real():
             return jsonify({"error": "No file selected"}), 400
         
         # Secure filename
+          # Secure filename
         filename = secure_filename(file.filename)
-
-        # Save to a temporary file
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
-            file.save(temp_file.name)
-            temp_filepath = temp_file.name
+        image_path = os.path.join(UPLOAD_FOLDER_AI, filename)
+        file.save(image_path)
+        
 
         # Choose model (default: model1)
         model_name = request.form.get("model", "model2")  
 
         # Call Python script using subprocess
         result = subprocess.run(
-            ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_ai_real.py",temp_filepath, model_name],
+            ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_ai_real.py",image_path, model_name],
             capture_output=True,
             text=True
         )
-
-        # Remove temp file after processing
-        os.remove(temp_filepath)
 
         if result.returncode != 0:
             return jsonify({"error": "Prediction failed", "details": result.stderr}), 500

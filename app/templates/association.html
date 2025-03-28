@@ -1,94 +1,6 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Model Prediction</title>
-</head>
-<body>
-
-
-    <h1>Model Prediction for Grocery Items</h1>
-    <form id="predictionForm">
-        <label for="model">Select Model:</label>
-        <select id="model" name="model">
-            <option value="apriori">Apriori</option>
-            <option value="fp_growth">Fp_growth</option>
-            
-        </select>
-        <br><br>
-        <label for="items">Grocery items (comma separated) </label>
-        <input type="text" id="items" name="items" required placeholder="Eg: whole milk, yogurt">
-        <br><br>
-        <button type="submit">Submit</button>
-    </form>
-
-    <h2>Prediction Result:</h2>
-    <p id="predictionResult">Waiting for prediction...</p>
-    <script>
-        document.getElementById('predictionForm').addEventListener('submit', async function(event) {
-            event.preventDefault();  // Prevent default form submission
-            
-            const model = document.getElementById('model').value;
-            const itemsInput = document.getElementById('items') || document.getElementById('features');
-        
-            if (!itemsInput) {
-                alert('Error: Could not find input field for items/features!');
-                return;
-            }
-        
-            const items = itemsInput.value.split(',').map(item => item.trim());
-        
-            // Debugging - log request payload
-            console.log('Sending:', { model, items });
-        
-            document.getElementById('predictionResult').innerText = "Loading..."; // Show loading text
-        
-            try {
-                const response = await fetch('/api_bp_association/predict_association', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ model, items })
-                });
-        
-                if (!response.ok) {
-                    throw new Error(`Server Error: ${response.status}`);
-                }
-        
-                const result = await response.json();
-                console.log('Received:', result); // Debugging - log response
-        
-                if (result.status === 'success' && Array.isArray(result.recommended_items) && result.recommended_items.length > 0) {
-                    document.getElementById('predictionResult').innerHTML = `
-                        <strong>Recommendations:</strong>
-                        <ul>
-                            ${result.recommended_items.map((item, index) => 
-                                `<li>${item} (${result.confidence_scores[index]}%)</li>`
-                            ).join('')}
-                        </ul>
-                    `;
-                } else {
-                    document.getElementById('predictionResult').innerHTML = `
-                        <strong>Recommendations:</strong> No recommendations found for these items.
-                    `;
-                }
-        
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('predictionResult').innerText = `Error: ${error.message || "Failed to connect to server"}`;
-            }
-        });
-        
-    </script>
-
-</body>
-</html>
- -->
- <!DOCTYPE html>
- <html lang="en">
- <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Grocery Item Prediction</title>
@@ -118,7 +30,6 @@
              padding: 20px;
              font-size: 24px;
              font-weight: bold;
-             text-transform: uppercase;
              position: absolute;
              top: 0;
              display: flex;
@@ -126,18 +37,19 @@
          }
          
          .home-btn {
-             background: rgba(255, 255, 255, 0.2);
-             border: none;
-             padding: 10px 15px;
-             font-size: 16px;
-             color: white;
-             cursor: pointer;
-             border-radius: 5px;
-             transition: 0.3s;
-             position: absolute;
-             justify-content: center;
-             left: 2px; /* Keep button on the left */
-         }
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 6%;
+            position: fixed;
+            left: 10px;
+            top: 1px;            
+        }
          
          .home-btn:hover {
              background: #aaaaaa40;
@@ -151,7 +63,7 @@
              border-radius: 15px;
              box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
              text-align: center;
-             height: 80vh;  /* Set max height */
+             height: 60vh;  /* Set max height */
              overflow-y: auto;  /* Enable scrolling */
          }
          
@@ -213,14 +125,28 @@
          .try-now:hover {
              background: #45a049;
          }
+        
          .result-box {
-             margin-top: 15px;
-             font-size: 16px;
-             font-weight: bold;
-             background: rgba(255, 255, 255, 0.2);
-             padding: 10px;
-             border-radius: 5px;
-         }
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            width: auto;
+            max-width: 90%; /* Reduced width */
+            max-height: 150px; /* Limits height */
+            overflow-y: auto; /* Enables scrolling */
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px; /* Reduced font size */
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
          ul {
              text-align: left;
              margin-top: 10px;
@@ -287,6 +213,12 @@
              console.log('Sending:', { model, items });
          
              document.getElementById('predictionResult').innerText = "Loading..."; // Show loading text
+             const resultBox = document.querySelector('.result-box');
+             const resultText = document.getElementById('predictionResult');
+         
+             
+             resultBox.style.display = "block";
+             resultText.innerText = "Waiting for prediction...";
          
              try {
                  const response = await fetch('/api_bp_association/predict_association', {

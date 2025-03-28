@@ -1,10 +1,21 @@
 from flask import Flask
 from app.api.api import api_bp,api_bp_classify,api_bp_cluster ,api_bp_association ,home_api,api_bp_fruit,api_bp_ai_real
 import os
+import logging
+
 def create_app():
     app = Flask(__name__, template_folder= os.path.join(os.getcwd(), 'app', 'templates')) 
-    print("Template Folder Path:", app.template_folder)  
-    # Register the blueprint with the URL prefix
+    
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.FileHandler("app.log"),  # Log to a file
+        ]
+    )
+    # app.logger = logging.getLogger("flask_app")
+
     app.register_blueprint(api_bp, url_prefix='/api_bp')
     app.register_blueprint(api_bp_classify, url_prefix='/api_bp_classify')
     app.register_blueprint(api_bp_cluster, url_prefix='/api_bp_cluster')

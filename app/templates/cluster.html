@@ -30,7 +30,6 @@
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
-            text-transform: uppercase;
             position: absolute;
             top: 0;
             display: flex;
@@ -40,14 +39,16 @@
         .home-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            padding: 10px 15px;
+            padding: 10px;
             font-size: 16px;
             color: white;
             cursor: pointer;
             border-radius: 5px;
             transition: 0.3s;
-            position: absolute;
-            left: 2px;
+            width: 6%;
+            position: fixed;
+            left: 10px;
+            top: 1px;            
         }
         
         .home-btn:hover {
@@ -61,7 +62,8 @@
             background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
+            text-align: centleftr;
+            padding: 20px;
             height: 80vh;
             overflow-y: auto;
             width: 500px;
@@ -117,13 +119,23 @@
             background: #45a049;
         }
         
+        
         .result-box {
-            margin-top: 15px;
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            display: none; 
+            width: auto;
+            max-width: 80%; 
+            background: rgba(0, 0, 0, 0.8); 
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 5px;
+            text-align: center;
+            z-index: 1000; 
         }
     </style>
 </head>
@@ -160,6 +172,12 @@
 
     
     <script>
+        const placeholders = {
+            "Age": "Eg;34",
+            "Annual Income (1000$)": "Eg., 15",
+            "Spending Score (0-100)": "Eg. 67"
+            };
+        
         function updateInputFields() {
             const inputContainer = document.getElementById('inputFields');
             inputContainer.innerHTML = '';
@@ -177,9 +195,12 @@
                     input.innerHTML = `<option value='1'>Male</option><option value='0'>Female</option>`;
                 } else {
                     input = document.createElement('input');
+                    
                     input.type = 'number';
+                    input.placeholder = placeholders[feature];
                 }
                 input.name = feature;
+                
                 inputContainer.appendChild(input);
                 inputContainer.appendChild(document.createElement('br'));
             });
@@ -199,8 +220,13 @@
             const featuresInput = Array.from(inputs).map(input => parseFloat(input.value) || 0);
             const model = document.getElementById('model').value;
             
-            console.log("Sending data:", { model, features: featuresInput });
+            const resultBox = document.querySelector('.result-box');
+            const resultText = document.getElementById('predictionResult');
+        
             
+            resultBox.style.display = "block";
+            resultText.innerText = "Waiting for prediction...";
+        
             try {
                 const response = await fetch('/api_bp_cluster/predict_cluster', {
                     method: 'POST',

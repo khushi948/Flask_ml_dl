@@ -6,7 +6,7 @@
     <title>Fruit Classification</title>
     <style>
         * {
-            margin: 0;
+            
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
@@ -20,43 +20,47 @@
             height: 100vh;
             color: white;
             text-align: center;
-            padding: 20px;
-            overflow: hidden;
+           
         } 
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 6%;
+            position: fixed;
+            left: 10px;
+            top: 1px;            
+        }
         .header {
-            background: rgba(7, 0, 0, 0.9);
+            background: rgba(7, 0, 0, 0.7);
             width: 100%;
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
-            text-transform: uppercase;
             position: absolute;
             top: 0;
-            display: flex;
-            justify-content: center;
+            left: 0;
+            text-align: center;
         }
-        .home-btn {
-            background: rgba(255, 255, 255,0);
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            color: white;
-            cursor: pointer;
-            
-            transition: 0.3s;
-            position: absolute;
-            left: 10px;
-        }
+        
+        
+        
         .home-btn:hover {
-            background: #aaaaaa40;
+            background: #ff7eb3;
         }
+        
         .container {
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            height: 60vh;
+            height: 80vh;
             overflow-y: auto;
             width: 400px;
         }
@@ -107,12 +111,21 @@
             transform: scale(1.05);
         }
         .result-box {
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 0.2);
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            display: none; 
+            width: auto;
+            max-width: 80%; 
+            background: rgba(0, 0, 0, 0.8); 
+            color: #fff;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000; 
         }
         .error-box {
             margin-top: 15px;
@@ -133,11 +146,13 @@
         <h1>Upload an Image for Fruit Classification</h1>
         <img src="{{url_for('static',filename='images/fruit.jpg')}}" width="200" height="100" alt="Fruit Image">
 
-       
+        <h3>Model Accuracy-91%</h3>
         <div>
             <br>
             <h3>Upload Image: </h3>
-            <input type="file" id="fileInput" onchange="displayFileName()">
+            <input type="file" id="fileInput" accept="image/*" onchange="loadFile(event)">
+            <p><img id="output" width="200"/></p>
+             
             <p id="fileName" style="color: yellow; font-weight: bold; margin-top: 5px;"></p>
         </div>
         <button onclick="uploadImage()">Predict</button>
@@ -147,22 +162,22 @@
     </div>
 
     <script>
-        function displayFileName() {
-            let fileInput = document.getElementById("fileInput");
-            let fileName = document.getElementById("fileName");
-        
-            if (fileInput.files.length > 0) {
-                fileName.innerText = "Selected File: " + fileInput.files[0].name;
-            } else {
-                fileName.innerText = "";
-            }
-        }
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src=URL.createObjectURL(event.target.files[0]);
+        };
         function uploadImage() {
             let file = document.getElementById("fileInput").files[0];
             if (!file) {
                 document.getElementById("error").innerText = "Please select an image.";
                 return;
-            }
+            };
+            const resultBox = document.querySelector('.result-box');
+            const resultText = document.getElementById('predictionResult');
+        
+            
+            resultBox.style.display = "block";
+            resultText.innerText = "Waiting for prediction...";
 
             let formData = new FormData();
             formData.append("file", file);
@@ -192,8 +207,11 @@
                 "Apple": "🍏 Apple",
                 "Banana": "🍌 Banana"
             };
-            return fruitMapping[prediction] || "❌ Not a fruit";
-        }
+            return fruitMapping[prediction] || "❌ Not a fruit";}
+
+            document.getElementById('predictionForm').addEventListener('submit', async function(event) {
+    event.preventDefault();})
+            
     </script>
 
 </body>

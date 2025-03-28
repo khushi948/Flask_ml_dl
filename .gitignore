@@ -1,9 +1,9 @@
 mlflask/
 *.keras
-# Ignore large files
 *.pyd
 *.dll
 app/models/deep_learning/
 tf_env/app/models/deep_learning/*.keras
 mlflask/Lib/site-packages/xgboost/lib/xgboost.dll
 tf_env/
+
