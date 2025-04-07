@@ -1147,3 +1147,477 @@
 2025-03-28 04:31:41,119 - INFO -  * Restarting with stat
 2025-03-28 04:31:43,499 - WARNING -  * Debugger is active!
 2025-03-28 04:31:43,503 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:20:34,931 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-28 08:20:34,931 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-28 08:20:34,935 - INFO -  * Restarting with stat
+2025-03-28 08:20:37,030 - WARNING -  * Debugger is active!
+2025-03-28 08:20:37,034 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:20:41,165 - INFO - Home page accessed
+2025-03-28 08:20:41,171 - INFO - 127.0.0.1 - - [28/Mar/2025 08:20:41] "GET / HTTP/1.1" 200 -
+2025-03-28 08:20:58,787 - INFO - Real vs fake image 
+2025-03-28 08:20:58,795 - INFO - 127.0.0.1 - - [28/Mar/2025 08:20:58] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-03-28 08:20:58,899 - INFO - 127.0.0.1 - - [28/Mar/2025 08:20:58] "GET /static/images/ai_real.jpg HTTP/1.1" 200 -
+2025-03-28 08:20:58,910 - INFO - 127.0.0.1 - - [28/Mar/2025 08:20:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-28 08:21:00,751 - INFO - Home page accessed
+2025-03-28 08:21:00,752 - INFO - 127.0.0.1 - - [28/Mar/2025 08:21:00] "GET / HTTP/1.1" 200 -
+2025-03-28 08:21:42,625 - INFO - Home page accessed
+2025-03-28 08:21:42,626 - INFO - 127.0.0.1 - - [28/Mar/2025 08:21:42] "GET / HTTP/1.1" 200 -
+2025-03-28 08:21:46,576 - INFO - Fruit classification
+2025-03-28 08:21:46,580 - INFO - 127.0.0.1 - - [28/Mar/2025 08:21:46] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 08:21:46,598 - INFO - 127.0.0.1 - - [28/Mar/2025 08:21:46] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 08:22:03,300 - INFO - Fruit classification
+2025-03-28 08:22:03,301 - INFO - 127.0.0.1 - - [28/Mar/2025 08:22:03] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 08:22:03,319 - INFO - 127.0.0.1 - - [28/Mar/2025 08:22:03] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 08:22:38,164 - INFO - 127.0.0.1 - - [28/Mar/2025 08:22:38] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-03-28 08:23:01,327 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-03-28 08:23:01,869 - INFO -  * Restarting with stat
+2025-03-28 08:23:04,508 - WARNING -  * Debugger is active!
+2025-03-28 08:23:04,512 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:24:02,157 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-03-28 08:24:02,664 - INFO -  * Restarting with stat
+2025-03-28 08:24:05,101 - WARNING -  * Debugger is active!
+2025-03-28 08:24:05,104 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:24:09,835 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-03-28 08:24:10,427 - INFO -  * Restarting with stat
+2025-03-28 08:25:51,795 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-28 08:25:51,795 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-28 08:25:51,796 - INFO -  * Restarting with stat
+2025-03-28 08:25:53,997 - WARNING -  * Debugger is active!
+2025-03-28 08:25:54,000 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:26:04,671 - INFO - 127.0.0.1 - - [28/Mar/2025 08:26:04] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-03-28 08:26:23,639 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-03-28 08:26:24,164 - INFO -  * Restarting with stat
+2025-03-28 08:26:52,423 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-28 08:26:52,423 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-28 08:26:52,425 - INFO -  * Restarting with stat
+2025-03-28 08:26:54,487 - WARNING -  * Debugger is active!
+2025-03-28 08:26:54,490 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 08:27:03,536 - INFO - 127.0.0.1 - - [28/Mar/2025 08:27:03] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-03-28 08:31:35,253 - INFO - Fruit classification
+2025-03-28 08:31:35,268 - INFO - 127.0.0.1 - - [28/Mar/2025 08:31:35] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 08:31:35,375 - INFO - 127.0.0.1 - - [28/Mar/2025 08:31:35] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 08:32:20,021 - INFO - Fruit classification
+2025-03-28 08:32:20,026 - INFO - 127.0.0.1 - - [28/Mar/2025 08:32:20] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 08:32:20,044 - INFO - 127.0.0.1 - - [28/Mar/2025 08:32:20] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 08:33:58,048 - INFO - Fruit classification
+2025-03-28 08:33:58,052 - INFO - 127.0.0.1 - - [28/Mar/2025 08:33:58] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 08:33:58,083 - INFO - 127.0.0.1 - - [28/Mar/2025 08:33:58] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:28:43,393 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-28 09:28:43,394 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-28 09:28:43,394 - INFO -  * Restarting with stat
+2025-03-28 09:28:44,981 - WARNING -  * Debugger is active!
+2025-03-28 09:28:44,983 - INFO -  * Debugger PIN: 220-213-700
+2025-03-28 09:28:49,283 - INFO - Home page accessed
+2025-03-28 09:28:49,287 - INFO - 127.0.0.1 - - [28/Mar/2025 09:28:49] "GET / HTTP/1.1" 200 -
+2025-03-28 09:30:51,758 - INFO - Fruit classification
+2025-03-28 09:30:51,762 - INFO - 127.0.0.1 - - [28/Mar/2025 09:30:51] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 09:30:51,994 - INFO - 127.0.0.1 - - [28/Mar/2025 09:30:51] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:31:41,515 - INFO - Fruit classification
+2025-03-28 09:31:41,519 - INFO - 127.0.0.1 - - [28/Mar/2025 09:31:41] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 09:31:41,555 - INFO - 127.0.0.1 - - [28/Mar/2025 09:31:41] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:31:59,011 - INFO - Fruit classification
+2025-03-28 09:31:59,017 - INFO - 127.0.0.1 - - [28/Mar/2025 09:31:59] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 09:31:59,073 - INFO - 127.0.0.1 - - [28/Mar/2025 09:31:59] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:32:02,536 - INFO - 127.0.0.1 - - [28/Mar/2025 09:32:02] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-03-28 09:35:07,158 - INFO - Fruit classification
+2025-03-28 09:35:07,174 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:07] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 09:35:07,233 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:07] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:35:18,827 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:18] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-03-28 09:35:25,933 - INFO - Home page accessed
+2025-03-28 09:35:25,934 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:25] "GET / HTTP/1.1" 200 -
+2025-03-28 09:35:27,552 - INFO - Home page accessed
+2025-03-28 09:35:27,552 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:27] "GET / HTTP/1.1" 200 -
+2025-03-28 09:35:29,815 - INFO - Real vs fake image 
+2025-03-28 09:35:29,829 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:29] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-03-28 09:35:29,874 - INFO - 127.0.0.1 - - [28/Mar/2025 09:35:29] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:38:50,252 - INFO - Home page accessed
+2025-03-28 09:38:50,256 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:50] "GET / HTTP/1.1" 200 -
+2025-03-28 09:38:51,946 - INFO - Real vs fake image 
+2025-03-28 09:38:51,947 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:51] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-03-28 09:38:51,972 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:51] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-03-28 09:38:58,224 - INFO - Home page accessed
+2025-03-28 09:38:58,229 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:58] "GET / HTTP/1.1" 200 -
+2025-03-28 09:38:59,613 - INFO - Fruit classification
+2025-03-28 09:38:59,613 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:59] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-03-28 09:38:59,649 - INFO - 127.0.0.1 - - [28/Mar/2025 09:38:59] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:30:19,584 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-05 03:30:19,585 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-05 03:30:19,586 - INFO -  * Restarting with stat
+2025-04-05 03:30:20,881 - WARNING -  * Debugger is active!
+2025-04-05 03:30:20,884 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:30:35,217 - INFO - Home page accessed
+2025-04-05 03:30:35,222 - INFO - 127.0.0.1 - - [05/Apr/2025 03:30:35] "GET / HTTP/1.1" 200 -
+2025-04-05 03:30:46,845 - INFO - Regression
+2025-04-05 03:30:46,850 - INFO - 127.0.0.1 - - [05/Apr/2025 03:30:46] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 03:30:46,926 - INFO - 127.0.0.1 - - [05/Apr/2025 03:30:46] "GET /static/images/house.jpg HTTP/1.1" 200 -
+2025-04-05 03:30:52,009 - INFO - Linear model selected
+2025-04-05 03:30:52,012 - INFO - Regression prediction sent
+2025-04-05 03:30:52,012 - INFO - 127.0.0.1 - - [05/Apr/2025 03:30:52] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 03:30:58,360 - INFO - Decision tree
+2025-04-05 03:30:58,369 - INFO - Regression prediction sent
+2025-04-05 03:30:58,369 - INFO - 127.0.0.1 - - [05/Apr/2025 03:30:58] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 03:31:05,577 - INFO - SVM model selected
+2025-04-05 03:31:05,581 - INFO - Regression prediction sent
+2025-04-05 03:31:05,581 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:05] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 03:31:07,541 - INFO - Home page accessed
+2025-04-05 03:31:07,541 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:07] "GET / HTTP/1.1" 200 -
+2025-04-05 03:31:08,873 - INFO - Classification
+2025-04-05 03:31:08,887 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:08] "GET /api_bp_classify/classification HTTP/1.1" 200 -
+2025-04-05 03:31:08,946 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:08] "GET /static/images/student.jpg HTTP/1.1" 200 -
+2025-04-05 03:31:13,797 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:13] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 03:31:24,606 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:24] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 03:31:41,296 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:41] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 03:31:51,381 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:51] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 03:31:57,982 - INFO - 127.0.0.1 - - [05/Apr/2025 03:31:57] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 03:32:02,478 - INFO - Home page accessed
+2025-04-05 03:32:02,479 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:02] "GET / HTTP/1.1" 200 -
+2025-04-05 03:32:03,568 - INFO - Cluster
+2025-04-05 03:32:03,571 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:03] "GET /api_bp_cluster/cluster HTTP/1.1" 200 -
+2025-04-05 03:32:03,610 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:03] "GET /static/images/income.png HTTP/1.1" 200 -
+2025-04-05 03:32:06,649 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:06] "POST /api_bp_cluster/predict_cluster HTTP/1.1" 200 -
+2025-04-05 03:32:14,166 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:14] "POST /api_bp_cluster/predict_cluster HTTP/1.1" 200 -
+2025-04-05 03:32:16,092 - INFO - Home page accessed
+2025-04-05 03:32:16,093 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:16] "GET / HTTP/1.1" 200 -
+2025-04-05 03:32:18,026 - INFO - Association
+2025-04-05 03:32:18,037 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:18] "GET /api_bp_association/association HTTP/1.1" 200 -
+2025-04-05 03:32:18,073 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:18] "GET /static/images/grocery.jpg HTTP/1.1" 200 -
+2025-04-05 03:32:24,255 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:24] "POST /api_bp_association/predict_association HTTP/1.1" 200 -
+2025-04-05 03:32:30,444 - INFO - Home page accessed
+2025-04-05 03:32:30,445 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:30] "GET / HTTP/1.1" 200 -
+2025-04-05 03:32:31,920 - INFO - Fruit classification
+2025-04-05 03:32:31,930 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:31] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:32:31,964 - INFO - 127.0.0.1 - - [05/Apr/2025 03:32:31] "GET /static/images/fruit.jpg HTTP/1.1" 200 -
+2025-04-05 03:33:08,136 - INFO - 127.0.0.1 - - [05/Apr/2025 03:33:08] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 03:33:13,135 - INFO - Home page accessed
+2025-04-05 03:33:13,136 - INFO - 127.0.0.1 - - [05/Apr/2025 03:33:13] "GET / HTTP/1.1" 200 -
+2025-04-05 03:33:14,475 - INFO - Real vs fake image 
+2025-04-05 03:33:14,484 - INFO - 127.0.0.1 - - [05/Apr/2025 03:33:14] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:33:14,515 - INFO - 127.0.0.1 - - [05/Apr/2025 03:33:14] "GET /static/images/ai_real.jpg HTTP/1.1" 200 -
+2025-04-05 03:33:59,373 - INFO - Home page accessed
+2025-04-05 03:33:59,373 - INFO - 127.0.0.1 - - [05/Apr/2025 03:33:59] "GET / HTTP/1.1" 200 -
+2025-04-05 03:34:00,460 - INFO - Fruit classification
+2025-04-05 03:34:00,461 - INFO - 127.0.0.1 - - [05/Apr/2025 03:34:00] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:34:00,492 - INFO - 127.0.0.1 - - [05/Apr/2025 03:34:00] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:34:04,911 - INFO - Home page accessed
+2025-04-05 03:34:04,912 - INFO - 127.0.0.1 - - [05/Apr/2025 03:34:04] "GET / HTTP/1.1" 200 -
+2025-04-05 03:34:07,124 - INFO - Fruit classification
+2025-04-05 03:34:07,124 - INFO - 127.0.0.1 - - [05/Apr/2025 03:34:07] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:34:07,155 - INFO - 127.0.0.1 - - [05/Apr/2025 03:34:07] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:35:48,876 - INFO - 127.0.0.1 - - [05/Apr/2025 03:35:48] "[35m[1mPOST /api_bp_fruit/predict_fruit HTTP/1.1[0m" 500 -
+2025-04-05 03:36:37,446 - INFO - Fruit classification
+2025-04-05 03:36:37,449 - INFO - 127.0.0.1 - - [05/Apr/2025 03:36:37] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:36:37,460 - INFO - 127.0.0.1 - - [05/Apr/2025 03:36:37] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:36:55,443 - INFO - Fruit classification
+2025-04-05 03:36:55,445 - INFO - 127.0.0.1 - - [05/Apr/2025 03:36:55] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:36:55,455 - INFO - 127.0.0.1 - - [05/Apr/2025 03:36:55] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:37:40,655 - INFO - 127.0.0.1 - - [05/Apr/2025 03:37:40] "[31m[1mGET /api_bp_ai_real/predict_ai_real HTTP/1.1[0m" 405 -
+2025-04-05 03:37:40,890 - INFO - 127.0.0.1 - - [05/Apr/2025 03:37:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-05 03:38:57,634 - INFO - Home page accessed
+2025-04-05 03:38:57,634 - INFO - 127.0.0.1 - - [05/Apr/2025 03:38:57] "GET / HTTP/1.1" 200 -
+2025-04-05 03:38:58,475 - INFO - Real vs fake image 
+2025-04-05 03:38:58,477 - INFO - 127.0.0.1 - - [05/Apr/2025 03:38:58] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:38:58,508 - INFO - 127.0.0.1 - - [05/Apr/2025 03:38:58] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:43:08,354 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-04-05 03:43:08,607 - INFO -  * Restarting with stat
+2025-04-05 03:43:09,964 - WARNING -  * Debugger is active!
+2025-04-05 03:43:09,966 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:43:11,149 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-04-05 03:43:11,327 - INFO -  * Restarting with stat
+2025-04-05 03:43:12,590 - WARNING -  * Debugger is active!
+2025-04-05 03:43:12,592 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:43:29,782 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 03:43:29,969 - INFO -  * Restarting with stat
+2025-04-05 03:43:31,276 - WARNING -  * Debugger is active!
+2025-04-05 03:43:31,278 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:43:37,770 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 03:43:37,975 - INFO -  * Restarting with stat
+2025-04-05 03:43:39,233 - WARNING -  * Debugger is active!
+2025-04-05 03:43:39,235 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:43:45,049 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-05 03:43:45,049 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-05 03:43:45,050 - INFO -  * Restarting with stat
+2025-04-05 03:43:46,296 - WARNING -  * Debugger is active!
+2025-04-05 03:43:46,298 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:43:49,911 - INFO - Home page accessed
+2025-04-05 03:43:49,914 - INFO - 127.0.0.1 - - [05/Apr/2025 03:43:49] "GET / HTTP/1.1" 200 -
+2025-04-05 03:43:50,756 - INFO - Home page accessed
+2025-04-05 03:43:50,757 - INFO - 127.0.0.1 - - [05/Apr/2025 03:43:50] "GET / HTTP/1.1" 200 -
+2025-04-05 03:43:52,849 - INFO - Real vs fake image 
+2025-04-05 03:43:52,852 - INFO - 127.0.0.1 - - [05/Apr/2025 03:43:52] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:43:52,913 - INFO - 127.0.0.1 - - [05/Apr/2025 03:43:52] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:44:06,125 - INFO - 127.0.0.1 - - [05/Apr/2025 03:44:06] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:45:15,083 - INFO - 127.0.0.1 - - [05/Apr/2025 03:45:15] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:45:45,642 - INFO - 127.0.0.1 - - [05/Apr/2025 03:45:45] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:45:57,326 - INFO - Home page accessed
+2025-04-05 03:45:57,327 - INFO - 127.0.0.1 - - [05/Apr/2025 03:45:57] "GET / HTTP/1.1" 200 -
+2025-04-05 03:45:58,810 - INFO - Fruit classification
+2025-04-05 03:45:58,813 - INFO - 127.0.0.1 - - [05/Apr/2025 03:45:58] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:45:58,843 - INFO - 127.0.0.1 - - [05/Apr/2025 03:45:58] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:46:02,519 - INFO - Home page accessed
+2025-04-05 03:46:02,519 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:02] "GET / HTTP/1.1" 200 -
+2025-04-05 03:46:03,638 - INFO - Real vs fake image 
+2025-04-05 03:46:03,638 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:03] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:46:03,670 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:03] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:46:13,075 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:13] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:46:29,697 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 03:46:29,920 - INFO -  * Restarting with stat
+2025-04-05 03:46:31,392 - WARNING -  * Debugger is active!
+2025-04-05 03:46:31,394 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 03:46:46,571 - INFO - Real vs fake image 
+2025-04-05 03:46:46,575 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:46] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:46:46,624 - INFO - 127.0.0.1 - - [05/Apr/2025 03:46:46] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:47:02,537 - INFO - Real vs fake image 
+2025-04-05 03:47:02,540 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:02] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:47:02,549 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:02] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:47:18,184 - INFO - Real vs fake image 
+2025-04-05 03:47:18,186 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:18] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:47:18,198 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:18] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:47:32,693 - INFO - Real vs fake image 
+2025-04-05 03:47:32,696 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:32] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:47:32,706 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:32] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:47:46,016 - INFO - 127.0.0.1 - - [05/Apr/2025 03:47:46] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:48:19,959 - INFO - Real vs fake image 
+2025-04-05 03:48:19,962 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:19] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:48:19,972 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:19] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:48:45,877 - INFO - Real vs fake image 
+2025-04-05 03:48:45,880 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:45] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:48:45,891 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:45] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:48:58,703 - INFO - Real vs fake image 
+2025-04-05 03:48:58,706 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:58] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 03:48:58,716 - INFO - 127.0.0.1 - - [05/Apr/2025 03:48:58] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:49:27,115 - INFO - 127.0.0.1 - - [05/Apr/2025 03:49:27] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 03:53:12,610 - INFO - Home page accessed
+2025-04-05 03:53:12,612 - INFO - 127.0.0.1 - - [05/Apr/2025 03:53:12] "GET / HTTP/1.1" 200 -
+2025-04-05 03:53:13,724 - INFO - Fruit classification
+2025-04-05 03:53:13,727 - INFO - 127.0.0.1 - - [05/Apr/2025 03:53:13] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:53:13,757 - INFO - 127.0.0.1 - - [05/Apr/2025 03:53:13] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:53:30,251 - INFO - Fruit classification
+2025-04-05 03:53:30,253 - INFO - 127.0.0.1 - - [05/Apr/2025 03:53:30] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:53:30,263 - INFO - 127.0.0.1 - - [05/Apr/2025 03:53:30] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:54:05,466 - INFO - 127.0.0.1 - - [05/Apr/2025 03:54:05] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 03:54:26,384 - INFO - 127.0.0.1 - - [05/Apr/2025 03:54:26] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 03:54:40,799 - INFO - 127.0.0.1 - - [05/Apr/2025 03:54:40] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 03:57:22,797 - INFO - Fruit classification
+2025-04-05 03:57:22,799 - INFO - 127.0.0.1 - - [05/Apr/2025 03:57:22] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 03:57:22,810 - INFO - 127.0.0.1 - - [05/Apr/2025 03:57:22] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 03:57:27,678 - INFO - Home page accessed
+2025-04-05 03:57:27,678 - INFO - 127.0.0.1 - - [05/Apr/2025 03:57:27] "GET / HTTP/1.1" 200 -
+2025-04-05 04:09:50,178 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_fruit.py', reloading
+2025-04-05 04:09:50,440 - INFO -  * Restarting with stat
+2025-04-05 04:09:51,784 - WARNING -  * Debugger is active!
+2025-04-05 04:09:51,786 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:09:54,048 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_fruit.py', reloading
+2025-04-05 04:09:54,339 - INFO -  * Restarting with stat
+2025-04-05 04:09:55,600 - WARNING -  * Debugger is active!
+2025-04-05 04:09:55,603 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:09:57,863 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 04:09:58,049 - INFO -  * Restarting with stat
+2025-04-05 04:09:59,341 - WARNING -  * Debugger is active!
+2025-04-05 04:09:59,343 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:10:14,369 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-04-05 04:10:14,579 - INFO -  * Restarting with stat
+2025-04-05 04:10:15,884 - WARNING -  * Debugger is active!
+2025-04-05 04:10:15,886 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:12:14,262 - INFO - Home page accessed
+2025-04-05 04:12:14,265 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:14] "GET / HTTP/1.1" 200 -
+2025-04-05 04:12:16,368 - INFO - Fruit classification
+2025-04-05 04:12:16,371 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:16] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 04:12:16,421 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:16] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:12:38,145 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:38] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 04:12:48,148 - INFO - Home page accessed
+2025-04-05 04:12:48,148 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:48] "GET / HTTP/1.1" 200 -
+2025-04-05 04:12:49,159 - INFO - Real vs fake image 
+2025-04-05 04:12:49,162 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:49] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 04:12:49,178 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:49] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:12:54,369 - INFO - 127.0.0.1 - - [05/Apr/2025 04:12:54] "[33mPOST /api_bp_ai_real/predict_ai_real HTTP/1.1[0m" 404 -
+2025-04-05 04:13:54,276 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 04:13:54,481 - INFO -  * Restarting with stat
+2025-04-05 04:13:55,816 - WARNING -  * Debugger is active!
+2025-04-05 04:13:55,818 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:14:24,779 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-05 04:14:24,779 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-05 04:14:24,780 - INFO -  * Restarting with stat
+2025-04-05 04:14:25,988 - WARNING -  * Debugger is active!
+2025-04-05 04:14:25,990 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:14:31,162 - INFO - 127.0.0.1 - - [05/Apr/2025 04:14:31] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 04:14:53,871 - INFO - 127.0.0.1 - - [05/Apr/2025 04:14:53] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 04:15:15,038 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\predict_ai_real.py', reloading
+2025-04-05 04:15:15,267 - INFO -  * Restarting with stat
+2025-04-05 04:15:16,599 - WARNING -  * Debugger is active!
+2025-04-05 04:15:16,601 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:15:38,035 - INFO -  * Detected change in 'C:\\Users\\Admin\\ML_flask\\app\\api\\api.py', reloading
+2025-04-05 04:15:38,258 - INFO -  * Restarting with stat
+2025-04-05 04:15:39,617 - WARNING -  * Debugger is active!
+2025-04-05 04:15:39,618 - INFO -  * Debugger PIN: 220-213-700
+2025-04-05 04:15:48,878 - INFO - 127.0.0.1 - - [05/Apr/2025 04:15:48] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 04:16:01,363 - INFO - Real vs fake image 
+2025-04-05 04:16:01,368 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:01] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 04:16:01,416 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:01] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:16:24,655 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:24] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 04:16:37,641 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:37] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 04:16:47,697 - INFO - Home page accessed
+2025-04-05 04:16:47,699 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:47] "GET / HTTP/1.1" 200 -
+2025-04-05 04:16:49,502 - INFO - Fruit classification
+2025-04-05 04:16:49,504 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:49] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 04:16:49,518 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:49] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:16:54,214 - INFO - Fruit classification
+2025-04-05 04:16:54,215 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:54] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 04:16:54,227 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:54] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:16:54,464 - INFO - Fruit classification
+2025-04-05 04:16:54,464 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:54] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 04:16:54,474 - INFO - 127.0.0.1 - - [05/Apr/2025 04:16:54] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 04:17:01,992 - INFO - Home page accessed
+2025-04-05 04:17:01,993 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:01] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:02,780 - INFO - Home page accessed
+2025-04-05 04:17:02,780 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:02] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:03,081 - INFO - Home page accessed
+2025-04-05 04:17:03,081 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:03] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:03,317 - INFO - Home page accessed
+2025-04-05 04:17:03,317 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:03] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:03,480 - INFO - Home page accessed
+2025-04-05 04:17:03,481 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:03] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:03,726 - INFO - Home page accessed
+2025-04-05 04:17:03,727 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:03] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:04,519 - INFO - Home page accessed
+2025-04-05 04:17:04,520 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:04] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:04,751 - INFO - Home page accessed
+2025-04-05 04:17:04,752 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:04] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:05,112 - INFO - Home page accessed
+2025-04-05 04:17:05,112 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:05] "GET / HTTP/1.1" 200 -
+2025-04-05 04:17:05,364 - INFO - Home page accessed
+2025-04-05 04:17:05,365 - INFO - 127.0.0.1 - - [05/Apr/2025 04:17:05] "GET / HTTP/1.1" 200 -
+2025-04-05 08:07:39,330 - INFO - Home page accessed
+2025-04-05 08:07:39,331 - INFO - 127.0.0.1 - - [05/Apr/2025 08:07:39] "GET / HTTP/1.1" 200 -
+2025-04-05 08:07:58,757 - INFO - Regression
+2025-04-05 08:07:58,761 - INFO - 127.0.0.1 - - [05/Apr/2025 08:07:58] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 08:07:58,800 - INFO - 127.0.0.1 - - [05/Apr/2025 08:07:58] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 08:08:04,981 - INFO - Multiple model selected
+2025-04-05 08:08:04,984 - INFO - Regression prediction sent
+2025-04-05 08:08:04,984 - INFO - 127.0.0.1 - - [05/Apr/2025 08:08:04] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 08:08:25,527 - INFO - Multiple model selected
+2025-04-05 08:08:25,528 - INFO - Regression prediction sent
+2025-04-05 08:08:25,529 - INFO - 127.0.0.1 - - [05/Apr/2025 08:08:25] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 08:08:29,590 - INFO - Regression
+2025-04-05 08:08:29,591 - INFO - 127.0.0.1 - - [05/Apr/2025 08:08:29] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 08:08:29,616 - INFO - 127.0.0.1 - - [05/Apr/2025 08:08:29] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 08:08:49,546 - INFO - Multiple model selected
+2025-04-05 08:08:49,548 - INFO - Regression prediction sent
+2025-04-05 08:08:49,548 - INFO - 127.0.0.1 - - [05/Apr/2025 08:08:49] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 08:09:00,791 - INFO - Home page accessed
+2025-04-05 08:09:00,792 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:00] "GET / HTTP/1.1" 200 -
+2025-04-05 08:09:03,346 - INFO - Classification
+2025-04-05 08:09:03,355 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:03] "GET /api_bp_classify/classification HTTP/1.1" 200 -
+2025-04-05 08:09:03,389 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:03] "[36mGET /static/images/student.jpg HTTP/1.1[0m" 304 -
+2025-04-05 08:09:08,736 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:08] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 08:09:16,137 - INFO - Home page accessed
+2025-04-05 08:09:16,137 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:16] "GET / HTTP/1.1" 200 -
+2025-04-05 08:09:17,492 - INFO - Cluster
+2025-04-05 08:09:17,496 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:17] "GET /api_bp_cluster/cluster HTTP/1.1" 200 -
+2025-04-05 08:09:17,525 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:17] "[36mGET /static/images/income.png HTTP/1.1[0m" 304 -
+2025-04-05 08:09:18,942 - INFO - Home page accessed
+2025-04-05 08:09:18,943 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:18] "GET / HTTP/1.1" 200 -
+2025-04-05 08:09:19,916 - INFO - Real vs fake image 
+2025-04-05 08:09:19,917 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:19] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 08:09:19,947 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:19] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 08:09:37,176 - INFO - 127.0.0.1 - - [05/Apr/2025 08:09:37] "POST /api_bp_ai_real/predict_ai_real HTTP/1.1" 200 -
+2025-04-05 09:38:29,748 - INFO - Home page accessed
+2025-04-05 09:38:29,749 - INFO - 127.0.0.1 - - [05/Apr/2025 09:38:29] "GET / HTTP/1.1" 200 -
+2025-04-05 09:49:05,992 - INFO - Regression
+2025-04-05 09:49:05,993 - INFO - 127.0.0.1 - - [05/Apr/2025 09:49:05] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 09:49:06,021 - INFO - 127.0.0.1 - - [05/Apr/2025 09:49:06] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 09:49:20,221 - INFO - Home page accessed
+2025-04-05 09:49:20,221 - INFO - 127.0.0.1 - - [05/Apr/2025 09:49:20] "GET / HTTP/1.1" 200 -
+2025-04-05 09:50:02,582 - INFO - Association
+2025-04-05 09:50:02,590 - INFO - 127.0.0.1 - - [05/Apr/2025 09:50:02] "GET /api_bp_association/association HTTP/1.1" 200 -
+2025-04-05 09:50:02,622 - INFO - 127.0.0.1 - - [05/Apr/2025 09:50:02] "[36mGET /static/images/grocery.jpg HTTP/1.1[0m" 304 -
+2025-04-05 09:50:19,205 - INFO - 127.0.0.1 - - [05/Apr/2025 09:50:19] "POST /api_bp_association/predict_association HTTP/1.1" 200 -
+2025-04-05 09:50:51,016 - INFO - 127.0.0.1 - - [05/Apr/2025 09:50:51] "POST /api_bp_association/predict_association HTTP/1.1" 200 -
+2025-04-05 09:51:34,792 - INFO - Home page accessed
+2025-04-05 09:51:34,793 - INFO - 127.0.0.1 - - [05/Apr/2025 09:51:34] "GET / HTTP/1.1" 200 -
+2025-04-05 09:53:08,275 - INFO - Regression
+2025-04-05 09:53:08,276 - INFO - 127.0.0.1 - - [05/Apr/2025 09:53:08] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 09:53:08,309 - INFO - 127.0.0.1 - - [05/Apr/2025 09:53:08] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 09:54:58,825 - INFO - Home page accessed
+2025-04-05 09:54:58,826 - INFO - 127.0.0.1 - - [05/Apr/2025 09:54:58] "GET / HTTP/1.1" 200 -
+2025-04-05 09:55:13,664 - INFO - Fruit classification
+2025-04-05 09:55:13,664 - INFO - 127.0.0.1 - - [05/Apr/2025 09:55:13] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 09:55:13,697 - INFO - 127.0.0.1 - - [05/Apr/2025 09:55:13] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 09:56:30,044 - INFO - 127.0.0.1 - - [05/Apr/2025 09:56:30] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 09:56:49,522 - INFO - 127.0.0.1 - - [05/Apr/2025 09:56:49] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 09:56:54,066 - INFO - Home page accessed
+2025-04-05 09:56:54,067 - INFO - 127.0.0.1 - - [05/Apr/2025 09:56:54] "GET / HTTP/1.1" 200 -
+2025-04-05 09:56:57,958 - INFO - Classification
+2025-04-05 09:56:57,958 - INFO - 127.0.0.1 - - [05/Apr/2025 09:56:57] "GET /api_bp_classify/classification HTTP/1.1" 200 -
+2025-04-05 09:56:57,985 - INFO - 127.0.0.1 - - [05/Apr/2025 09:56:57] "[36mGET /static/images/student.jpg HTTP/1.1[0m" 304 -
+2025-04-05 09:57:03,767 - INFO - Home page accessed
+2025-04-05 09:57:03,768 - INFO - 127.0.0.1 - - [05/Apr/2025 09:57:03] "GET / HTTP/1.1" 200 -
+2025-04-05 13:36:52,282 - INFO - Regression
+2025-04-05 13:36:52,283 - INFO - 127.0.0.1 - - [05/Apr/2025 13:36:52] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 13:36:52,299 - INFO - 127.0.0.1 - - [05/Apr/2025 13:36:52] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 13:36:58,301 - INFO - Home page accessed
+2025-04-05 13:36:58,301 - INFO - 127.0.0.1 - - [05/Apr/2025 13:36:58] "GET / HTTP/1.1" 200 -
+2025-04-05 13:37:10,394 - INFO - Regression
+2025-04-05 13:37:10,395 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:10] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 13:37:10,419 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:10] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 13:37:21,792 - INFO - Home page accessed
+2025-04-05 13:37:21,793 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:21] "GET / HTTP/1.1" 200 -
+2025-04-05 13:37:35,104 - INFO - Regression
+2025-04-05 13:37:35,105 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:35] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 13:37:35,132 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:35] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 13:37:46,822 - INFO - Random forest
+2025-04-05 13:37:46,854 - INFO - Regression prediction sent
+2025-04-05 13:37:46,854 - INFO - 127.0.0.1 - - [05/Apr/2025 13:37:46] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 13:38:00,897 - INFO - Home page accessed
+2025-04-05 13:38:00,897 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:00] "GET / HTTP/1.1" 200 -
+2025-04-05 13:38:05,809 - INFO - Fruit classification
+2025-04-05 13:38:05,809 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:05] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 13:38:05,832 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:05] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 13:38:07,385 - INFO - Home page accessed
+2025-04-05 13:38:07,385 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:07] "GET / HTTP/1.1" 200 -
+2025-04-05 13:38:08,196 - INFO - Regression
+2025-04-05 13:38:08,197 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:08] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 13:38:08,220 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:08] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 13:38:13,476 - INFO - Polynomial model selected
+2025-04-05 13:38:13,481 - INFO - Regression prediction sent
+2025-04-05 13:38:13,482 - INFO - 127.0.0.1 - - [05/Apr/2025 13:38:13] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 15:56:13,674 - INFO - Home page accessed
+2025-04-05 15:56:13,675 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:13] "GET / HTTP/1.1" 200 -
+2025-04-05 15:56:40,288 - INFO - Regression
+2025-04-05 15:56:40,289 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:40] "GET /api_bp/regression HTTP/1.1" 200 -
+2025-04-05 15:56:40,314 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:40] "[36mGET /static/images/house.jpg HTTP/1.1[0m" 304 -
+2025-04-05 15:56:51,501 - INFO - Decision tree
+2025-04-05 15:56:51,502 - INFO - Regression prediction sent
+2025-04-05 15:56:51,502 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:51] "POST /api_bp/predict_regression HTTP/1.1" 200 -
+2025-04-05 15:56:58,130 - INFO - Home page accessed
+2025-04-05 15:56:58,131 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:58] "GET / HTTP/1.1" 200 -
+2025-04-05 15:56:59,201 - INFO - Fruit classification
+2025-04-05 15:56:59,202 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:59] "GET /api_bp_fruit/fruit HTTP/1.1" 200 -
+2025-04-05 15:56:59,225 - INFO - 127.0.0.1 - - [05/Apr/2025 15:56:59] "[36mGET /static/images/fruit.jpg HTTP/1.1[0m" 304 -
+2025-04-05 15:57:10,313 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:10] "POST /api_bp_fruit/predict_fruit HTTP/1.1" 200 -
+2025-04-05 15:57:12,418 - INFO - Home page accessed
+2025-04-05 15:57:12,419 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:12] "GET / HTTP/1.1" 200 -
+2025-04-05 15:57:14,861 - INFO - Classification
+2025-04-05 15:57:14,862 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:14] "GET /api_bp_classify/classification HTTP/1.1" 200 -
+2025-04-05 15:57:14,886 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:14] "[36mGET /static/images/student.jpg HTTP/1.1[0m" 304 -
+2025-04-05 15:57:22,789 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:22] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 15:57:33,268 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:33] "POST /api_bp_classify/predict_classify HTTP/1.1" 200 -
+2025-04-05 15:57:44,882 - INFO - Home page accessed
+2025-04-05 15:57:44,883 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:44] "GET / HTTP/1.1" 200 -
+2025-04-05 15:57:56,072 - INFO - Association
+2025-04-05 15:57:56,073 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:56] "GET /api_bp_association/association HTTP/1.1" 200 -
+2025-04-05 15:57:56,098 - INFO - 127.0.0.1 - - [05/Apr/2025 15:57:56] "[36mGET /static/images/grocery.jpg HTTP/1.1[0m" 304 -
+2025-04-05 15:58:18,140 - INFO - 127.0.0.1 - - [05/Apr/2025 15:58:18] "POST /api_bp_association/predict_association HTTP/1.1" 200 -
+2025-04-05 15:58:27,674 - INFO - Home page accessed
+2025-04-05 15:58:27,675 - INFO - 127.0.0.1 - - [05/Apr/2025 15:58:27] "GET / HTTP/1.1" 200 -
+2025-04-05 15:58:31,969 - INFO - Real vs fake image 
+2025-04-05 15:58:31,971 - INFO - 127.0.0.1 - - [05/Apr/2025 15:58:31] "GET /api_bp_ai_real/ai_real HTTP/1.1" 200 -
+2025-04-05 15:58:32,001 - INFO - 127.0.0.1 - - [05/Apr/2025 15:58:32] "[36mGET /static/images/ai_real.jpg HTTP/1.1[0m" 304 -
+2025-04-05 15:59:16,716 - INFO - Home page accessed
+2025-04-05 15:59:16,716 - INFO - 127.0.0.1 - - [05/Apr/2025 15:59:16] "GET / HTTP/1.1" 200 -

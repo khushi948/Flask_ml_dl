@@ -1,17 +1,27 @@
+#import alllibraries
 from flask import Blueprint, render_template, request, jsonify,current_app
 import joblib
 import numpy as np
 from sklearn.metrics import pairwise_distances_argmin_min
 from sklearn.preprocessing import  PolynomialFeatures
-
 import os
+from mlxtend.frequent_patterns import association_rules
+import pandas as pd
+import subprocess
+from werkzeug.utils import secure_filename
+import subprocess
+import re
+import json
 
 
+#Constants defined
 UPLOAD_FOLDER_AI = "app/uploads/ai"
 UPLOAD_FOLDER_FRUIT = "app/uploads/fruit"
 os.makedirs(UPLOAD_FOLDER_AI, exist_ok=True) 
 os.makedirs(UPLOAD_FOLDER_FRUIT, exist_ok=True) 
 
+
+#API bluepint of all apis
 api_bp = Blueprint('api_bp', __name__)
 api_bp_classify = Blueprint('api_bp_classify', __name__)
 api_bp_cluster = Blueprint('api_bp_cluster', __name__)
@@ -22,6 +32,7 @@ api = Blueprint('api', __name__)
 home_api = Blueprint('home_api', __name__)
 
 
+#Regression models
 models = {
     'linear_model': joblib.load('app/models/regression/linear_model.joblib'),
     'multiple_model': joblib.load('app/models/regression/multiple_model.joblib'),
@@ -31,16 +42,15 @@ models = {
     'poly_model': joblib.load('app/models/regression/poly_model.joblib')
 }
 
-    
-
+#Regression sclaers
 poly_scaler = joblib.load('app/models/regression/preprocessing/poly_scaler.joblib')
 scaler_all = joblib.load('app/models/regression/preprocessing/scaler_all.joblib')
 svm_scaler = joblib.load('app/models/regression/preprocessing/svm_scaler.joblib')
 scaler_k_best = joblib.load('app/models/regression/preprocessing/scaler_k_best.joblib')
-
 # scaler_xgb=joblib.load('app/models/classification/preprocessing/scaler_xgb.joblib')
 scaler_k=joblib.load('app/models/classification/preprocessing/scaler_k.joblib')
 
+#Classification models
 models_c={
     'rf_ros': joblib.load('app/models/classification/rf_ros.joblib'),
     'rf_kros': joblib.load('app/models/classification/rf_kros.joblib'),
@@ -55,20 +65,18 @@ models_c={
     'knn_k': joblib.load('app/models/classification/knn_k.joblib')
 }
 
-
+#Cluster models loaded
 model_cluster={
     'pca': joblib.load('app/models/clustering/pca.joblib'),
     'kmeans_pca': joblib.load('app/models/clustering/kmeans_pca.joblib'),
     'agg_clustering': joblib.load('app/models/clustering/agg_clustering.joblib'),
-    'db': joblib.load('app/models/clustering/db.joblib'),
-   
-   
+    'db': joblib.load('app/models/clustering/db.joblib'),  
 }
 
 
 std_scaler=joblib.load('app/models/clustering/preprocessing/std_scaler.joblib')
 
-
+#Home routes and other frontend routes
 @home_api.route('/')
 def home():
     current_app.logger.info("Home page accessed")  
@@ -109,7 +117,7 @@ def ai_real_home():
     current_app.logger.info("Real vs fake image ")  
     return render_template('ai_real.html')
 
-
+#API Routes to different models
 @api_bp.route('/predict_regression', methods=['POST'])
 def predict_regression():
     try:
@@ -117,7 +125,7 @@ def predict_regression():
         data = request.get_json()  
         model_name = data.get('model')  
         features = np.array(data['features']).reshape(1, -1)  
-        
+        current_app.logger.info(f"Received regression request for model: {model_name}")
         if model_name=='linear_model':
             current_app.logger.info("Linear model selected")  
             features_scaled = scaler_all.transform(features)
@@ -152,6 +160,7 @@ def predict_regression():
         current_app.logger.info("Regression prediction sent")  
         return jsonify({'prediction': prediction.tolist()})
     except Exception as e:
+        current_app.logger.error(f"Regression prediction failed: {e}")
         return jsonify({'error': str(e)}), 400
 
 
@@ -183,8 +192,8 @@ def predict_classification():
         else:
             prob_dict = None  # Some models (e.g., SVM without probability=True) may not support this
 
-        print("Predicted:", predicted_class)
-        print("Probabilities:", prob_dict)
+        # print("Predicted:", predicted_class)
+        # print("Probabilities:", prob_dict)
 
         return jsonify({
             'prediction': predicted_class,
@@ -192,6 +201,7 @@ def predict_classification():
         })
     
     except Exception as e:
+        current_app.logger.error(f"Classification prediction failed: {e}")
         return jsonify({'error': str(e)}), 400
 
 
@@ -201,7 +211,7 @@ def predict_cluster():
         data = request.get_json()  
         model_name = data.get('model')  
         features = np.array(data['features']).reshape(1, -1)   
-        print(features)
+        # print(features)
 
         user_input_std = std_scaler.transform(features)  
 
@@ -231,16 +241,13 @@ def predict_cluster():
 
         
         cluster_label = cluster_names.get(prediction, "Noise Cluster")
-
         # print(f"Predicted Cluster: {cluster_label}")
         return jsonify({'prediction': cluster_label})
     
     except Exception as e:
+        current_app.logger.error(f"Clustering prediction failed: {e}")
         return jsonify({'error': str(e)}), 400
 
-from collections import Counter
-from mlxtend.frequent_patterns import association_rules
-import pandas as pd
 
 apriori= joblib.load('app/models/association/apriori_model.joblib')
 fpgrowth= joblib.load('app/models/association/frequent_itemsets_fpgrowth.joblib')
@@ -279,9 +286,9 @@ def predict_association():
             else:
                 return jsonify({"error": f"Unknown model type: {model_type}"}), 400
                 
-            print(f"Successfully loaded {model_name} model from {model_dir}")
+            # print(f"Successfully loaded {model_name} model from {model_dir}")
         except Exception as e:
-            print(f"Error loading model: {str(e)}")
+            # print(f"Error loading model: {str(e)}")
             return jsonify({"error": f"Failed to load {model_type} model: {str(e)}"}), 500
         
         user_input = set(items)
@@ -336,20 +343,16 @@ def predict_association():
         })
         
     except Exception as e:
-        print(f"Exception in predict_association: {str(e)}")
-        import traceback
-        traceback.print_exc()
+        # print(f"Exception in predict_association: {str(e)}")
+        # import traceback
+        # traceback.print_exc()
+        current_app.logger.error(f"Association prediction failed: {e}")
         return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
     
-import subprocess
+
 # TENSORFLOW_ENV = "C:/Users/Admin/AppData/Local/Programs/Python/Python310/python.exe"  # Update with your TensorFlow venv path
 
-from werkzeug.utils import secure_filename
-import subprocess
-import re
-from flask import Flask, request, jsonify
-from werkzeug.utils import secure_filename
-import json
+
 @api_bp_fruit.route('/predict_fruit', methods=['POST'])
 def predict_fruit():
     try:
@@ -360,43 +363,33 @@ def predict_fruit():
         if file.filename == '':
             return jsonify({"error": "No file selected"}), 400
 
-        # Save the uploaded image
         filename = secure_filename(file.filename)
         image_path = os.path.join(UPLOAD_FOLDER_FRUIT, filename)
         file.save(image_path)
 
-        # Choose model (default: model1)
         model_name = request.form.get("model", "model1")
 
-        # Call Python script using subprocess
         result = subprocess.run(
             ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_fruit.py",image_path, model_name],
             capture_output=True,
             text=True
         )
-
+        # print(result)
         if result.returncode != 0:
             return jsonify({"error": "Prediction failed", "details": result.stderr}), 500
 
-        # Convert stdout to JSON
-        output_json = json.loads(result.stdout)
+        match = re.search(r'\b(Apple|Banana)\b', result.stdout, re.IGNORECASE)
+        prediction = match.group(0) if match else "Unknown"
 
-        if "error" in output_json:
-            return jsonify(output_json), 500
-
-        return jsonify({
-            "prediction": output_json["prediction"],
-            "probabilities": output_json["probabilities"]
-        })
+        return jsonify({"prediction": prediction})
 
     except Exception as e:
-        return jsonify({"error": "Prediction failed", "details": str(e)}), 500
-
+        current_app.logger.error(f"Fruit prediction failed: {e}")
+        return jsonify({"error": "Prediction failed", "details": str(e)})
 
 @api_bp_ai_real.route('/predict_ai_real', methods=['POST'])
 def predict_ai_real():
     try:
-            
         if 'file' not in request.files:
             return jsonify({"error": "No file uploaded"}), 400
         
@@ -404,33 +397,34 @@ def predict_ai_real():
         if file.filename == '':
             return jsonify({"error": "No file selected"}), 400
         
-        # Secure filename
-          # Secure filename
         filename = secure_filename(file.filename)
         image_path = os.path.join(UPLOAD_FOLDER_AI, filename)
         file.save(image_path)
-        
 
-        # Choose model (default: model1)
-        model_name = request.form.get("model", "model2")  
+        # print(f"[INFO] Image saved at: {image_path}")
 
-        # Call Python script using subprocess
+        if not os.path.exists(image_path):
+            return jsonify({"error": f"Image file not saved at {image_path}"}), 500
+
+        model_name = request.form.get("model", "model2")
+
         result = subprocess.run(
-            ["C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe", "C:/Users/Admin/ML_flask/app/api/predict_ai_real.py",image_path, model_name],
+            [
+                "C:/Users/Admin/ML_flask/tf_env/Scripts/python.exe",
+                "C:/Users/Admin/ML_flask/app/api/predict_ai_real.py",
+                image_path,
+                model_name
+            ],
             capture_output=True,
             text=True
         )
-
         if result.returncode != 0:
             return jsonify({"error": "Prediction failed", "details": result.stderr}), 500
 
         match = re.search(r'\b(Real|Fake)\b', result.stdout, re.IGNORECASE)
         prediction = match.group(0) if match else "Unknown"
-
-        
-
+        current_app.logger.error(f"Image prediction failed: {e}")
         return jsonify({"prediction": prediction})
 
     except Exception as e:
-        return jsonify({"error": "Prediction failed", "details": str(e)})
-
+        return jsonify({"error": "Prediction failed", "details": str(e)}), 500

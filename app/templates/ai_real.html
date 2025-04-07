@@ -57,9 +57,9 @@
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            height: 60vh;
+            
             overflow-y: auto;
-            width: 400px;
+            width: 500px;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -131,6 +131,33 @@
             font-weight: bold;
             color: red;
         }
+        .bar-container {
+            display: flex;
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 5px #000;
+            transform: rotate(-1deg);
+        }
+        
+        .bar {
+            height: 100%;
+            line-height: 40px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            transition: width 0.5s, background 0.5s;
+        }
+        
+        .fake-bar {
+            background: #ff4f4f;
+        }
+        
+        .real-bar {
+            background: #ffe165;
+        }
+        
     </style>
 </head>
 <body>
@@ -149,37 +176,47 @@
         <div>
             <br>
             <h3>Upload Image: </h3>
+            <br>
             <input type="file" id="fileInput" accept="image/*" onchange="loadFile(event)">
             <p><img id="output" width="200"/></p>
              
-            <p id="fileName" style="color: yellow; font-weight: bold; margin-top: 5px;"></p>
+            <p id="fileName" style="color: rgb(255, 255, 255); font-weight: bold; margin-top: 5px;"></p>
         </div>
         <button onclick="uploadImage()">Predict</button>
 
         <div class="result-box" id="result">Waiting for prediction</div>
+        <div class="loader-bar" id="loaderBar" style="display: none; margin-top: 20px; width: 100%;">
+            <div class="bar-container">
+                <div id="fakeBar" class="bar fake-bar">Fake</div>
+                <div id="realBar" class="bar real-bar">Real</div>
+            </div>
+        </div>
         <div class="error-box" id="error"></div>
     </div>
-
     <script>
         var loadFile = function(event) {
             var image = document.getElementById('output');
-            image.src=URL.createObjectURL(event.target.files[0]);
+            image.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById("fileName").innerText = event.target.files[0].name;
         };
+    
         function uploadImage() {
             let file = document.getElementById("fileInput").files[0];
+            const resultBox = document.getElementById("result");
+            const errorBox = document.getElementById("error");
+    
             if (!file) {
-                document.getElementById("error").innerText = "Please select an image.";
+                errorBox.innerText = "Please select an image.";
                 return;
             }
-            const resultBox = document.querySelector('.result-box');
-            const resultText = document.getElementById('predictionResult');
-        
-            
+    
             resultBox.style.display = "block";
-            resultText.innerText = "Waiting for prediction...";
+            resultBox.innerText = "Waiting for prediction...";
+            errorBox.innerText = "";
+    
             let formData = new FormData();
             formData.append("file", file);
-
+    
             fetch("http://127.0.0.1:5000/api_bp_ai_real/predict_ai_real", {
                 method: "POST",
                 body: formData
@@ -187,28 +224,27 @@
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    document.getElementById("result").innerText = "Waiting for prediction...";
-                    document.getElementById("error").innerText = data.error;
+                    resultBox.innerText = "";
+                    errorBox.innerText = data.error;
                 } else {
-                    document.getElementById("error").innerText = "";
-                    document.getElementById("result").innerText = "Prediction: " + getEmoji(data.prediction);
+                    errorBox.innerText = "";
+                    resultBox.innerText = "Prediction: " + getEmoji(data.prediction);
                 }
             })
             .catch(error => {
-                document.getElementById("result").innerText = "Waiting for prediction...";
-                document.getElementById("error").innerText = "Error: " + error.message;
+                resultBox.innerText = "";
+                errorBox.innerText = "Error: " + error.message;
             });
         }
-
+    
         function getEmoji(prediction) {
-            let fruitMapping = {
-                "Real": "Real Image",
-                "Fake": "Fake Image"
+            const imageMapping = {
+                "Real": "Real Image ✅",
+                "Fake": "Fake Image ❌"
             };
-            return fruitMapping[prediction] || "❌ Not a image";
+            return imageMapping[prediction] || "Unknown";
         }
-        
     </script>
-
+    
 </body>
 </html>

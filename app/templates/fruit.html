@@ -1,3 +1,5 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <title>Fruit Classification</title>
     <style>
         * {
-            
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
@@ -20,8 +22,20 @@
             height: 100vh;
             color: white;
             text-align: center;
-           
+            padding: 20px;
+            overflow: hidden;
         } 
+        .header {
+            background: rgba(7, 0, 0, 0.9);
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+        }
         .home-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -36,33 +50,18 @@
             left: 10px;
             top: 1px;            
         }
-        .header {
-            background: rgba(7, 0, 0, 0.7);
-            width: 100%;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-align: center;
-        }
-        
-        
-        
         .home-btn:hover {
-            background: #ff7eb3;
+            background: #aaaaaa40;
         }
-        
         .container {
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            height: 80vh;
+            
             overflow-y: auto;
-            width: 400px;
+            width: 500px;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -127,6 +126,7 @@
             text-align: center;
             z-index: 1000; 
         }
+        
         .error-box {
             margin-top: 15px;
             font-size: 16px;
@@ -143,17 +143,19 @@
     </div>
 
     <div class="container">
+       
         <h1>Upload an Image for Fruit Classification</h1>
-        <img src="{{url_for('static',filename='images/fruit.jpg')}}" width="200" height="100" alt="Fruit Image">
+        <img src="{{url_for('static',filename='images/fruit.jpg')}}" width="100" height="100" alt="fruit Image">
 
-        <h3>Model Accuracy-91%</h3>
+        <h3>Model Accuracy- 91 %</h3>
         <div>
             <br>
             <h3>Upload Image: </h3>
+            <br>
             <input type="file" id="fileInput" accept="image/*" onchange="loadFile(event)">
             <p><img id="output" width="200"/></p>
              
-            <p id="fileName" style="color: yellow; font-weight: bold; margin-top: 5px;"></p>
+            <p id="fileName" style="color: rgb(255, 255, 255); font-weight: bold; margin-top: 5px;"></p>
         </div>
         <button onclick="uploadImage()">Predict</button>
 
@@ -164,24 +166,27 @@
     <script>
         var loadFile = function(event) {
             var image = document.getElementById('output');
-            image.src=URL.createObjectURL(event.target.files[0]);
+            image.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById("fileName").innerText = event.target.files[0].name;
         };
+    
         function uploadImage() {
             let file = document.getElementById("fileInput").files[0];
+            const resultBox = document.getElementById("result");
+            const errorBox = document.getElementById("error");
+    
             if (!file) {
-                document.getElementById("error").innerText = "Please select an image.";
+                errorBox.innerText = "Please select an image.";
                 return;
-            };
-            const resultBox = document.querySelector('.result-box');
-            const resultText = document.getElementById('predictionResult');
-        
-            
+            }
+    
             resultBox.style.display = "block";
-            resultText.innerText = "Waiting for prediction...";
-
+            resultBox.innerText = "Waiting for prediction...";
+            errorBox.innerText = "";
+    
             let formData = new FormData();
             formData.append("file", file);
-
+    
             fetch("http://127.0.0.1:5000/api_bp_fruit/predict_fruit", {
                 method: "POST",
                 body: formData
@@ -189,30 +194,27 @@
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    document.getElementById("result").innerText = "Waiting for prediction...";
-                    document.getElementById("error").innerText = data.error;
+                    resultBox.innerText = "";
+                    errorBox.innerText = data.error;
                 } else {
-                    document.getElementById("error").innerText = "";
-                    document.getElementById("result").innerText = "Prediction: " + getEmoji(data.prediction);
+                    errorBox.innerText = "";
+                    resultBox.innerText = "Prediction: " + getEmoji(data.prediction);
                 }
             })
             .catch(error => {
-                document.getElementById("result").innerText = "Waiting for prediction...";
-                document.getElementById("error").innerText = "Error: " + error.message;
+                resultBox.innerText = "";
+                errorBox.innerText = "Error: " + error.message;
             });
         }
-
+    
         function getEmoji(prediction) {
             let fruitMapping = {
                 "Apple": "🍏 Apple",
                 "Banana": "🍌 Banana"
             };
-            return fruitMapping[prediction] || "❌ Not a fruit";}
-
-            document.getElementById('predictionForm').addEventListener('submit', async function(event) {
-    event.preventDefault();})
-            
+            return fruitMapping[prediction] || "❌ Not a fruit";
+        }
     </script>
-
+    
 </body>
 </html>
